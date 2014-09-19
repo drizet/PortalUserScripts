@@ -5,7 +5,7 @@
 // @description prefill registration form
 // @include     *giocodigitale.it/*/registration
 // @version     1
-// @grant       none
+// @grant       GM_setClipboard
 // ==/UserScript==
 
 var userId = getRandomText("test", 4);
@@ -58,6 +58,8 @@ $("#Input_IdentificationData_DocumentReleaseLocation").val("releaseLocation");
 $("#Input_TermsAndConditions_TacAcceptance, #Input_PrivacyPolicy_PrivacyPolicyAccepted").attr("checked", "checked");
 $("#Input_TermsAndConditions_TacAcceptance, #Input_PrivacyPolicy_PrivacyPolicyAccepted").parent().addClass("checked");
 $("#Captcha_Input_Answer").val("+++");
+
+GM_setClipboard(userEmail, "text");
 
 function getEmail(symbolsCount, domain) {
     if(typeof symbolsCount === 'string') {

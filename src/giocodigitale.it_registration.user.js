@@ -8,6 +8,9 @@
 // @grant       none
 // ==/UserScript==
 
+var userId = getRandomText("test", 4);
+var userEmail = getEmail(userId, "bwin.it");
+
 // Personal data
 $("#Input_NameData_FirstName").val(getRandomText(null, false, 10));
 $("#Input_NameData_LastName").val(getRandomText(null, false, 10));
@@ -30,11 +33,11 @@ $("#Input_AddressData_AddressLine1").val("address");
 $("#Input_AddressData_AddressLine2").val("address2");
 $("#Input_AddressData_AddressZip").val("12312");
 $("#Input_AddressData_AddressCity").val("cityName");
-$("#Input_ContactData_EmailAddress").val(getEmail(8, "bwin.it"));
+$("#Input_ContactData_EmailAddress").val(userEmail);
 $("#Input_ContactData_PhoneNumber").val("1231231");
 
 // Account data
-$("#Input_LoginData_Username").val(getRandomText("test", 4));
+$("#Input_LoginData_Username").val(userId);
 $("#Input_LoginData_Password").val("123123q");
 $("#Input_LoginData_PasswordConfirmation").val("123123q");
 $("#Input_SecurityData_SecurityQuestion").val(4);

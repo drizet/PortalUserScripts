@@ -5,8 +5,10 @@
 // @description prefill registration form
 // @include     *www.bwin.it/*/registration
 // @version     1
-// @grant       none
+// @grant       GM_setClipboard
 // ==/UserScript==
+
+var userId = getRandomText("test", 4);
 
 // Personal data
 $("#Input_NameData_FirstName").val(getRandomText(null, false, 10));
@@ -34,7 +36,7 @@ $("#Input_ContactData_EmailAddress").val(getEmail(8, "bwin.it"));
 $("#Input_ContactData_PhoneNumber").val("1231231");
 
 // Account data
-$("#Input_LoginData_Username").val(getRandomText("test", 4));
+$("#Input_LoginData_Username").val(userId);
 $("#Input_LoginData_Password").val("123123q");
 $("#Input_LoginData_PasswordConfirmation").val("123123q");
 $("#Input_SecurityData_SecurityQuestion").val(11);
@@ -54,13 +56,13 @@ $("#Input_IdentificationData_DocumentReleaseLocation").val("releaseLocation");
 $("#Input_TermsAndConditions_TacAcceptance, #Input_PrivacyPolicy_PrivacyPolicyAccepted").attr("checked", "checked");
 $("#Captcha_Input_Answer").val("+++");
 
-function getEmail(symbolsCount, domain)
-{
+GM_setClipboard(userId, "text");
+
+function getEmail(symbolsCount, domain) {
     return getRandomText(null, true, symbolsCount) + "@" + domain;
 }
 
-function getRandomText(prefix, hasNumbers, symbolsCount)
-{
+function getRandomText(prefix, hasNumbers, symbolsCount) {
     if(symbolsCount == null)
         symbolsCount = 5;
     

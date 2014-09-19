@@ -28,6 +28,7 @@ if($("#registration-form").length){
 		$("#Input_BirthData_BirthCity").val("A089").click();
 	}, 4500);
 	$("#ConfirmCodiceFiscale #Input_BirthData_FiscalCodeConfirmed").attr("checked", "checked");
+	$("#ConfirmCodiceFiscale #Input_BirthData_FiscalCodeConfirmed").parent().addClass("checked");
 	$("#Input_AddressData_AddressState").val("AG");
 	$("#Input_AddressData_AddressLine1").val("address");
 	$("#Input_AddressData_AddressLine2").val("address2");
@@ -55,6 +56,7 @@ if($("#registration-form").length){
 	$("#Input_IdentificationData_DocumentReleaseLocation").val("releaseLocation");
 
 	$("#Input_TermsAndConditions_TacAcceptance, #Input_PrivacyPolicy_PrivacyPolicyAccepted").attr("checked", "checked");
+	$("#Input_TermsAndConditions_TacAcceptance, #Input_PrivacyPolicy_PrivacyPolicyAccepted").parent().addClass("checked");
 	$("#Captcha_Input_Answer").val("+++");
 
 	GM_setClipboard(userId, "text");

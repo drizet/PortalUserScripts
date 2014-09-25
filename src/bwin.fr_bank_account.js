@@ -8,10 +8,17 @@
 // @grant       none
 // ==/UserScript==
 
-$("#Input_DepositLimit").val("1250");
-$("#Input_BettingStakes").val("1250");
-$("#Input_PokerStakes").val("100000");
-$("#Input_FromAccountBalance").val("7500");
-$("#Input_RemainingBalance").val("5000");
+$.fn.selectOption = function(index){
+  index = index != null ? index : 0;
+  return this.each(function(){
+    return $(this).find("option:eq("+index+")").prop("selected", true);
+  });
+}
+
+$("#Input_DepositLimit").selectOption(1);
+$("#Input_BettingStakes").selectOption(1);
+$("#Input_PokerStakes").selectOption(1);
+$("#Input_FromAccountBalance").selectOption(1);
+$("#Input_RemainingBalance").selectOption(1);
 $("#Input_Iban").val("FR1420041010050500013M02606");
 $("#Input_BicSwift").val("SOGEFRPP");

@@ -4,7 +4,7 @@
 // @namespace   bwin.fr registration
 // @description prefill registration form
 // @include     *www.bwin.fr/*/registration
-// @version     1
+// @version     2
 // @grant       none
 // ==/UserScript==
 

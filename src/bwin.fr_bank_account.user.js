@@ -4,7 +4,7 @@
 // @namespace   bwin.fr
 // @description prefill bank account
 // @include     *www.bwin.fr/*/account/bankaccountregistration*
-// @version     1
+// @version     2
 // @grant       none
 // ==/UserScript==
 

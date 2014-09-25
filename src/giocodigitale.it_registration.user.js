@@ -4,7 +4,7 @@
 // @namespace   giocodigitale.it registration
 // @description prefill registration form
 // @include     *giocodigitale.it/*/registration
-// @version     1
+// @version     3
 // @grant       GM_setClipboard
 // ==/UserScript==
 

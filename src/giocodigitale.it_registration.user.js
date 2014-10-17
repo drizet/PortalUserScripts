@@ -4,7 +4,7 @@
 // @namespace   giocodigitale.it registration
 // @description prefill registration form
 // @include     *giocodigitale.it/*/registration
-// @version     3
+// @version     4
 // @grant       GM_setClipboard
 // ==/UserScript==
 
@@ -23,7 +23,7 @@ if($("#registration-form").length){
 	// Birth data
 	$("#Input_BirthData_BirthCountry").val("IT");
 	setTimeout(function(){
-		$("#Input_BirthData_BirthProvince").val("AG").click();
+		$("#Input_BirthData_BirthState").val("AG").click();
 	}, 3000);
 	setTimeout(function(){
 		$("#Input_BirthData_BirthCity").val("A089").click();

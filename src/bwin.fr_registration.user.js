@@ -3,8 +3,8 @@
 // @name        bwin.fr registration
 // @namespace   bwin.fr registration
 // @description prefill registration form
-// @include     *www.bwin.fr/*/registration
-// @version     2
+// @include     *www.bwin.fr/*/registration*
+// @version     3
 // @grant       none
 // ==/UserScript==
 

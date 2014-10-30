@@ -25,7 +25,7 @@ if($("#registration-form").length) {
 		$("#Input_BirthData_BirthState").val("AG").click();
 	}, 3000);
 	setTimeout(function(){
-		$("#Input_BirthData_BirthCity").val("A089").click();
+		$("#Input_BirthData_BirthCity").val("AGRIGENTO").click();
 		$("#ConfirmCodiceFiscale #Input_BirthData_FiscalCodeConfirmed").attr("checked", "checked").click();
 		$("#ConfirmCodiceFiscale #Input_BirthData_FiscalCodeConfirmed").parent().addClass("checked");
 	}, 4500);

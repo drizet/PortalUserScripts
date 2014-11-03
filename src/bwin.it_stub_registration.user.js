@@ -1,5 +1,5 @@
 ﻿// ==UserScript==
-// @name        bwin.it Work
+// @name        bwin.it Registration for Stub server
 // @namespace   bwin.it registration
 // @description prefill registration form
 // @include     *www.bwin.it/*/registration

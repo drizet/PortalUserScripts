@@ -3,8 +3,8 @@
 // @namespace   bwin.it registration
 // @description prefill registration form
 // @include     *www.bwin.it/*/registration
-// @exclude     qa30.*www.bwin.it/*/registration
-// @version     0.3.1
+// @exclude     *www.bwin.it*
+// @version     0.3.2
 // @grant       GM_setClipboard
 // @grant       GM_xmlhttpRequest
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js

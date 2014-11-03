@@ -4,7 +4,7 @@
 // @description prefill registration form
 // @include     *www.bwin.it/*/registration
 // @exclude     qa30.*www.bwin.it/*/registration
-// @version     0.3.0
+// @version     0.3.1
 // @grant       GM_setClipboard
 // @grant       GM_xmlhttpRequest
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js

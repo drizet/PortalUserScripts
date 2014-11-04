@@ -2,9 +2,9 @@
 // @name        bwin.it Registration for Stub server
 // @namespace   bwin.it registration
 // @description prefill registration form
-// @include     *www.bwin.it/*/registration
-// @exclude     *www.bwin.it*
-// @version     0.3.2
+// @include     *www.bwin.it/*/registration*
+// @include     *giocodigitale.it/*/registration*
+// @version     0.4.0
 // @grant       GM_setClipboard
 // @grant       GM_xmlhttpRequest
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
@@ -215,9 +215,6 @@ button.click(function () {
                 $("#Input_TermsAndConditions_TacAcceptance, #Input_PrivacyPolicy_PrivacyPolicyAccepted").attr("checked", "checked");
                 $("#Input_TermsAndConditions_TacAcceptance, #Input_PrivacyPolicy_PrivacyPolicyAccepted").parent().addClass("checked");
                 $("#Captcha_Input_Answer").val("+++");
-
-                GM_setClipboard(userId, "text");
             }
-
         });
 });

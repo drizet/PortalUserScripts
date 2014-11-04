@@ -4,7 +4,7 @@
 // @description prefill registration form
 // @include     *www.bwin.it/*/registration*
 // @include     *giocodigitale.it/*/registration*
-// @version     0.4.0
+// @version     0.4.1
 // @grant       GM_setClipboard
 // @grant       GM_xmlhttpRequest
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
@@ -155,8 +155,8 @@ function getRandomText(prefix, hasNumbers, symbolsCount){
 var settings = {};
 button.click(function () {
     settings.domain = getDomain();
-    settings.registrationStatus = $("#statusList").val();
-    settings.subRegistrationStatus = $("#subStatusList").val();
+    settings.registrationId = $("#statusList").val();
+    settings.subRegistrationId = $("#subStatusList").val();
     var generator = new CodeFiscaleGenerator(settings);
     generator.generageCodefiscale()
         .then(function () {

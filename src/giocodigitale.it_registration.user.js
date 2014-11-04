@@ -5,7 +5,7 @@
 // @description prefill registration form
 // @include     *giocodigitale.it/*/registration
 // @exclude     *giocodigitale.it/*/registration
-// @version     5
+// @version     5.0.1
 // @grant       GM_setClipboard
 // ==/UserScript==
 

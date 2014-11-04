@@ -4,7 +4,7 @@
 // @description prefill registration form
 // @include     *www.bwin.it/*/registration*
 // @include     *giocodigitale.it/*/registration*
-// @version     0.5.0
+// @version     0.5.1
 // @grant       GM_setClipboard
 // @grant       GM_xmlhttpRequest
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js

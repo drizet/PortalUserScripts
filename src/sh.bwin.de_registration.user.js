@@ -4,7 +4,7 @@
 // @namespace   www.sh.bwin.de registration
 // @description prefill registration form
 // @include     *www.sh.bwin.de/*/registration
-// @version     1
+// @version     2
 // @grant       GM_setClipboard
 // ==/UserScript==
 

@@ -1,4 +1,7 @@
 ﻿function CodeFiscaleGenerator(settings) {
+    var createCodeFiscaleLink = "https://213.92.84.21:8843/pgad-accounting-protocol-stub/service/rest/configure/addResponses/";
+    var getAllCodeFiscaleLink = "https://213.92.84.21:8843/pgad-accounting-protocol-stub/service/rest/configure/getConfiguredResponses/";
+
     function getCode(statusId) {
         return statusId == "1024" ? "00" : "01";
     }
@@ -30,8 +33,14 @@
             method: "Get",
             url: link,
             onload: function (response) {
-                var codes = $.parseXML(response.responseText);
-                def.resolve(codes);
+                if (response.status == 200) {
+                    var codes = $.parseXML(response.responseText);
+                    def.resolve(codes);
+                }
+                else {
+                    console.log("getAllCodeFiscales error: status - %d, message - %s", response.status, response.responseText);
+                    def.reject(response);
+                }
             }
         });
 
@@ -46,7 +55,7 @@
 
         var def = $.Deferred();
         var link = createCodeFiscaleLink + domainId;
-        var request = '<ConfigurableResponses><ConfigurableResponse accountCodeMigrationResponseCode="-1" identificationDocumentUpdateResponseCode="-1" subregistration2ResponseCode="' + subRegistrationId + '" subregistrationResponseCode="' + subRegistrationId + '"checkAccountStatusResponseDescription="4" checkAccountStatusResponseStatus="2" checkAccountStatusResponseCode="1024" editAccountProvinceOfResidenceResponseCode="1024" changeAccountStatusResponseCode="1024" bonusEWalletTransactionResponseCode="1024" eWalletTransactionResponseCode="1024" legalAccountOpeningResponseCode="1024" notifyAccountBalanceResponseCode="1024" individualAccountOpeningResponseCode="' + registrationId + '" fiscalCode="' + codeFiscale + '"/></ConfigurableResponses>';
+        var request = '<ConfigurableResponses><ConfigurableResponse accountCodeMigrationResponseCode="-1" identificationDocumentUpdateResponseCode="-1" subregistration2ResponseCode="' + subRegistrationId + '" subregistrationResponseCode="' + subRegistrationId + '" checkAccountStatusResponseDescription="4" checkAccountStatusResponseStatus="2" checkAccountStatusResponseCode="1024" editAccountProvinceOfResidenceResponseCode="1024" changeAccountStatusResponseCode="1024" bonusEWalletTransactionResponseCode="1024" eWalletTransactionResponseCode="1024" legalAccountOpeningResponseCode="1024" notifyAccountBalanceResponseCode="1024" individualAccountOpeningResponseCode="' + registrationId + '" fiscalCode="' + codeFiscale + '"/></ConfigurableResponses>';
         GM_xmlhttpRequest({
             method: "Post",
             url: link,
@@ -54,8 +63,15 @@
             headers: {
                 "Content-Type": "application/xml"
             },
-            onload: function () {
-                def.resolve();
+            onload: function (response){
+                console.log(response.status);
+                if (response.status == "204") {
+                    def.resolve();
+                }
+                else {
+                    console.log("createCodeFiscale error: status - %d, message - %s", response.status, response.responseText);
+                    def.reject(response);
+                }
             }
         });
 
@@ -64,7 +80,7 @@
 
     this.generageCodefiscale = function () {
         return $.Deferred(function (defer) {
-            generateUniqueCodeFiscale().then(createCodeFiscale).then(defer.resolve);
+            generateUniqueCodeFiscale().then(createCodeFiscale, defer.reject).then(defer.resolve, defer.reject);
         }).promise();
     };
 }

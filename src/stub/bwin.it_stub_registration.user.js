@@ -2,7 +2,7 @@
 // @name        bwin.it Registration for Stub server
 // @namespace   bwin.it registration
 // @description prefill registration form
-// @version     0.5.2
+// @version     0.6.0
 // @include     *www.bwin.it/*/registration*
 // @include     *giocodigitale.it/*/registration*
 // @grant       GM_xmlhttpRequest
@@ -10,9 +10,6 @@
 // @require     https://github.com/drizet/PortalUserScripts/raw/master/src/stub/codeFiscaleGenerator.js
 // @require     https://github.com/drizet/PortalUserScripts/raw/master/src/stub/core.js
 // ==/UserScript==
-
-var createCodeFiscaleLink = "https://213.92.84.21:8843/pgad-accounting-protocol-stub/service/rest/configure/addResponses/";
-var getAllCodeFiscaleLink = "https://213.92.84.21:8843/pgad-accounting-protocol-stub/service/rest/configure/getConfiguredResponses/";
 
 var domains = [
     {
@@ -167,8 +164,6 @@ button.click(function () {
                 // Personal data
                 $("#Input_NameData_FirstName").val(getRandomText(null, false, 10));
                 $("#Input_NameData_LastName").val(getRandomText(null, false, 10));
-                // Date Of Birth
-
 
                 // Birth data
                 $("#Input_BirthData_BirthCountry").selectOptionByValue("IT");
@@ -178,8 +173,8 @@ button.click(function () {
                 setTimeout(function () {
                     $("#Input_BirthData_BirthCity").selectOptionByValue("AGRIGENTO");
                 }, 4500);
+
                 setTimeout(function () {
-                    console.log("Code Fiscale - " + settings.codeFiscale);
                     $("#Input_BirthData_CodiceFiscale").val(settings.codeFiscale);
                     $("#ConfirmCodiceFiscale #Input_BirthData_FiscalCodeConfirmed").check();
                 }, 5000);
@@ -210,5 +205,9 @@ button.click(function () {
                 $("#Input_TermsAndConditions_TacAcceptance, #Input_PrivacyPolicy_PrivacyPolicyAccepted").check();
                 $("#Captcha_Input_Answer").val("+++");
             }
-        });
+        }, function (response) {
+            if (response != null) {
+                alert("Error!\nStatus: " + response.status + "\nText: " + response.responseText);
+            }
+    });
 });

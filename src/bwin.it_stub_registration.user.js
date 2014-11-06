@@ -2,8 +2,6 @@
 // @name        bwin.it Registration for Stub server
 // @namespace   bwin.it registration
 // @description prefill registration form
-// @include     *www.bwin.it/*/registration*
-// @include     *giocodigitale.it/*/registration*
 // @version     0.5.1
 // @grant       GM_setClipboard
 // @grant       GM_xmlhttpRequest

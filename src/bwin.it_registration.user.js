@@ -4,8 +4,7 @@
 // @namespace   bwin.it registration
 // @description prefill registration form
 // @include     *www.bwin.it/*/registration
-// @exclude     *www.bwin.it/*/registration
-// @version     5.0.1
+// @version     5.0.2
 // @grant       GM_setClipboard
 // ==/UserScript==
 

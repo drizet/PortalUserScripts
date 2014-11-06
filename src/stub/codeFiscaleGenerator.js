@@ -46,7 +46,7 @@
 
         var def = $.Deferred();
         var link = createCodeFiscaleLink + domainId;
-        var request = '<ConfigurableResponses><ConfigurableResponse accountCodeMigrationResponseCode="-1" identificationDocumentUpdateResponseCode="-1" subregistrationResponseCode="' + subRegistrationId + '" checkAccountStatusResponseDescription="4" checkAccountStatusResponseStatus="2" checkAccountStatusResponseCode="1024" editAccountProvinceOfResidenceResponseCode="1024" changeAccountStatusResponseCode="1024" bonusEWalletTransactionResponseCode="1024" eWalletTransactionResponseCode="1024" legalAccountOpeningResponseCode="1024" notifyAccountBalanceResponseCode="1024" individualAccountOpeningResponseCode="' + registrationId + '" fiscalCode="' + codeFiscale + '"/></ConfigurableResponses>';
+        var request = '<ConfigurableResponses><ConfigurableResponse accountCodeMigrationResponseCode="-1" identificationDocumentUpdateResponseCode="-1" subregistration2ResponseCode="' + subRegistrationId + '" subregistrationResponseCode="' + subRegistrationId + '"checkAccountStatusResponseDescription="4" checkAccountStatusResponseStatus="2" checkAccountStatusResponseCode="1024" editAccountProvinceOfResidenceResponseCode="1024" changeAccountStatusResponseCode="1024" bonusEWalletTransactionResponseCode="1024" eWalletTransactionResponseCode="1024" legalAccountOpeningResponseCode="1024" notifyAccountBalanceResponseCode="1024" individualAccountOpeningResponseCode="' + registrationId + '" fiscalCode="' + codeFiscale + '"/></ConfigurableResponses>';
         GM_xmlhttpRequest({
             method: "Post",
             url: link,

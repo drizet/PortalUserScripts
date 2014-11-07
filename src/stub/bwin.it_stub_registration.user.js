@@ -2,13 +2,13 @@
 // @name        bwin.it Registration for Stub server
 // @namespace   bwin.it registration
 // @description prefill registration form
-// @version     0.6.1
+// @version     0.6.2
 // @include     *www.bwin.it/*/registration*
 // @include     *giocodigitale.it/*/registration*
 // @grant       GM_xmlhttpRequest
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
-// @require     https://github.com/drizet/PortalUserScripts/raw/master/src/stub/codeFiscaleGenerator.js
-// @require     https://github.com/drizet/PortalUserScripts/raw/master/src/stub/core.js
+// @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/stub/codeFiscaleGenerator.js
+// @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/stub/core.js
 // ==/UserScript==
 
 var domains = [

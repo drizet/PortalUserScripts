@@ -2,7 +2,7 @@
 // @name        bwin.it Registration for Stub server
 // @namespace   bwin.it registration
 // @description prefill registration form
-// @version     0.6.2
+// @version     0.7.0
 // @include     *www.bwin.it/*/registration*
 // @include     *giocodigitale.it/*/registration*
 // @grant       GM_xmlhttpRequest
@@ -157,7 +157,7 @@ button.click(function () {
     settings.subRegistrationId = $("#subStatusList").val();
     var generator = new CodeFiscaleGenerator(settings);
     generator.generageCodefiscale()
-        .then(function () {
+        .then(function (codeFiscale) {
             if ($("#registration-form").length) {
                 var userId = getRandomText("test", 4);
 
@@ -175,7 +175,7 @@ button.click(function () {
                 }, 4500);
 
                 setTimeout(function () {
-                    $("#Input_BirthData_CodiceFiscale").val(settings.codeFiscale);
+                    $("#Input_BirthData_CodiceFiscale").val(codeFiscale);
                     $("#ConfirmCodiceFiscale #Input_BirthData_FiscalCodeConfirmed").check();
                 }, 5000);
 

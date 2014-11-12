@@ -11,13 +11,14 @@
             return $(this).find('option[value="' + value + '"]').prop("selected", true).click();
         });
     }
-    $.fn.setDate = function (day, month, year) {
+
+    $.fn.setDate = function (day, month, year){
         return this.each(function () {
             var id = this.id;
             $("#" + id + "_Day").selectOptionByIndex(day);
             $("#" + id + "_Month").selectOptionByIndex(month);
             $("#" + id + "_Year").val(year.toString());
-            $(this).attr("value", day + '/' + month + '/' + year);
+            $(this).val(day + '/' + month + '/' + year);
         });
     }
 

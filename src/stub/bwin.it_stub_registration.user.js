@@ -2,11 +2,12 @@
 // @name        bwin.it Registration for Stub server
 // @namespace   bwin.it registration
 // @description prefill registration form
-// @version     0.7.0
+// @version     0.7.5
 // @include     *www.bwin.it/*/registration*
 // @include     *giocodigitale.it/*/registration*
 // @grant       GM_xmlhttpRequest
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
+// @require     https://raw.githubusercontent.com/kapetan/jquery-observe/master/jquery-observe.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/stub/codeFiscaleGenerator.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/stub/core.js
 // ==/UserScript==
@@ -167,17 +168,18 @@ button.click(function () {
 
                 // Birth data
                 $("#Input_BirthData_BirthCountry").selectOptionByValue("IT");
-                setTimeout(function () {
-                    $("#Input_BirthData_BirthState").selectOptionByValue("AG");
-                }, 3000);
-                setTimeout(function () {
+                $("#Input_BirthData_BirthState").selectOptionByValue("AG");
+                $("#Input_BirthData_BirthCity").observe("added", function () {
                     $("#Input_BirthData_BirthCity").selectOptionByValue("AGRIGENTO");
-                }, 4500);
+                    $("#Input_BirthData_BirthCity").disconnect();
+                });
 
-                setTimeout(function () {
-                    $("#Input_BirthData_CodiceFiscale").val(codeFiscale);
-                    $("#ConfirmCodiceFiscale #Input_BirthData_FiscalCodeConfirmed").check();
-                }, 5000);
+                $("#Input_BirthData_FiscalCode").observe({ attributes: true, attributeFilter: ['class'] }, function (record) {
+                    if ($(this).val() !== codeFiscale) {
+                        $("#Input_BirthData_FiscalCode").val(codeFiscale);
+                        $("#ConfirmCodiceFiscale #Input_BirthData_FiscalCodeConfirmed").check();
+                    }
+                });
 
                 // Selects
                 $("#Input_AddressData_AddressState, #Input_SecurityData_SecurityQuestion, #Input_IdentificationData_DocumentType, #Input_IdentificationData_DocumentReleasedBy").selectOptionByIndex(1);

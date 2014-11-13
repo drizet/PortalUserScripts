@@ -4,7 +4,7 @@
 // @namespace   HttpsToHttp
 // @include     *bwin*
 // @include     *giocodigitale*
-// @version     1
+// @version     2
 // @grant       none
 // ==/UserScript==
 

@@ -1,0 +1,13 @@
+// ==UserScript==
+// @require     http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
+// @name        HttpsToHttp
+// @namespace   HttpsToHttp
+// @include     *
+// @version     1
+// @grant       none
+// ==/UserScript==
+
+$("a[href^='https']").click(function(event){
+  event.preventDefault();
+  document.location.href = $(this).attr("href").replace("https", "http");
+});

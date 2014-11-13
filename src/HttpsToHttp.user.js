@@ -2,7 +2,8 @@
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @name        HttpsToHttp
 // @namespace   HttpsToHttp
-// @include     *
+// @include     *bwin*
+// @include     *giocodigitale*
 // @version     1
 // @grant       none
 // ==/UserScript==

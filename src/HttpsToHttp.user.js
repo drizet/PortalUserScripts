@@ -5,7 +5,7 @@
 // @include     *bwin*
 // @include     *giocodigitale*
 // @exclude     *cms.bwin*
-// @version     2
+// @version     2.1
 // @grant       none
 // ==/UserScript==
 

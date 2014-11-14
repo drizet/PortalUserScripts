@@ -8,6 +8,7 @@
 // @grant       GM_xmlhttpRequest
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @require     https://raw.githubusercontent.com/kapetan/jquery-observe/master/jquery-observe.js
+// @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/random.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/stub/codeFiscaleGenerator.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/stub/core.js
 // ==/UserScript==
@@ -72,11 +73,6 @@ var statuses = [
     }
 ];
 
-function getRandomCharacter() {
-    var symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    return symbols.charAt(Math.floor(Math.random() * symbols.length));
-}
-
 function createList(id, list) {
     var select = $('<select id="' + id + '"/>');
     for (var i = 0; i < list.length; i++) {
@@ -113,103 +109,76 @@ var button = $("<button>Fill</button>");
 mainDiv.append(button);
 
 // Send request
-function getDomain() {
-    var domainValue = $("#domainList").val();
-    for (var i = 0; i < domains.length; i++) {
-        if (domains[i].value == domainValue) {
-            return domains[i];
-        }
-    }
-
-    return null;
-}
-
-function getEmail(symbolsCount, domain) {
-    return getRandomText(null, true, symbolsCount) + "@" + domain;
-}
-
-function getRandomText(prefix, hasNumbers, symbolsCount) {
-    if (symbolsCount == null) {
-        symbolsCount = 5;
-    }
-
-    var text = "";
-    var symbols = "abcdefghijklmnopqrstuvwxyz";
-
-    if (hasNumbers) {
-        symbols += "0123456789";
-    }
-
-    for (var i = 0; i < symbolsCount; i++) {
-        text += symbols.charAt(Math.floor(Math.random() * symbols.length));
-    }
-
-    if (prefix == null) {
-        prefix = "";
-    }
-
-    return prefix + text;
-}
-
-var settings = {};
 button.click(function () {
-    settings.domain = getDomain();
-    settings.registrationId = $("#statusList").val();
-    settings.subRegistrationId = $("#subStatusList").val();
+    function getDomain() {
+        var domainValue = $("#domainList").val();
+        for (var i = 0; i < domains.length; i++) {
+            if (domains[i].value == domainValue) {
+                return domains[i];
+            }
+        }
+
+        return null;
+    }
+
+    var settings = {
+        domain : getDomain(),
+        registrationId : $("#statusList").val(),
+        subRegistrationId : $("#subStatusList").val()
+    };
+
     var generator = new CodeFiscaleGenerator(settings);
     generator.generageCodefiscale()
         .then(function (codeFiscale) {
-            if ($("#registration-form").length) {
-                var userId = getRandomText("test", 4);
-
-                // Personal data
-                $("#Input_NameData_FirstName").val(getRandomText(null, false, 10));
-                $("#Input_NameData_LastName").val(getRandomText(null, false, 10));
-
-                // Birth data
-                $("#Input_BirthData_BirthCountry").selectOptionByValue("IT");
-                $("#Input_BirthData_BirthState").selectOptionByValue("AG");
-                $("#Input_BirthData_BirthCity").observe("added", function () {
-                    $("#Input_BirthData_BirthCity").selectOptionByValue("AGRIGENTO");
-                    $("#Input_BirthData_BirthCity").disconnect();
-                });
-
-                $("#Input_BirthData_FiscalCode").observe({ attributes: true, attributeFilter: ['class'] }, function (record) {
-                    if ($(this).val() !== codeFiscale) {
-                        $("#Input_BirthData_FiscalCode").val(codeFiscale);
-                        $("#ConfirmCodiceFiscale #Input_BirthData_FiscalCodeConfirmed").check();
-                    }
-                });
-
-                // Selects
-                $("#Input_AddressData_AddressState, #Input_SecurityData_SecurityQuestion, #Input_IdentificationData_DocumentType, #Input_IdentificationData_DocumentReleasedBy").selectOptionByIndex(1);
-
-                // Set password
-                $("#Input_LoginData_Password, #Input_LoginData_PasswordConfirmation, #Input_SecurityData_SecurityAnswer").val("123123q");
-
-                $("#Input_AddressData_AddressLine1").val("address");
-                $("#Input_AddressData_AddressLine2").val("address2");
-                $("#Input_AddressData_AddressZip").val("12312");
-                $("#Input_AddressData_AddressCity").val("cityName");
-                $("#Input_ContactData_EmailAddress").val(getEmail(8, "bwin.it"));
-                $("#Input_ContactData_PhoneNumber").val("1231231");
-
-                // Set date
-                $("#Input_BirthData_DateOfBirth, #Input_IdentificationData_DocumentReleaseDate").setDate(1, 1, 1992);
-
-                // Account data
-                $("#Input_LoginData_Username").val(userId);
-
-                // ID document
-                $("#Input_IdentificationData_DocumentNumber").val("documentNumber");
-                $("#Input_IdentificationData_DocumentReleaseLocation").val("releaseLocation");
-
-                $("#Input_TermsAndConditions_TacAcceptance, #Input_PrivacyPolicy_PrivacyPolicyAccepted").check();
-                $("#Captcha_Input_Answer").val("+++");
-            }
+            $("#Input_BirthData_FiscalCode").val(codeFiscale);
+            $("#ConfirmCodiceFiscale #Input_BirthData_FiscalCodeConfirmed").check();
         }, function (response) {
             if (response != null) {
                 alert("Error!\nStatus: " + response.status + "\nText: " + response.responseText);
             }
     });
+});
+
+$(function () {
+    if ($("#registration-form").length) {
+        var userId = Random.getUserName(4);
+
+        // Personal data
+        $("#Input_NameData_FirstName").val(Random.getText(10));
+        $("#Input_NameData_LastName").val(Random.getText(10));
+
+        // Birth data
+        $("#Input_BirthData_BirthCountry").selectOptionByValue("IT");
+        $("#Input_BirthData_BirthState").selectOptionByValue("AG");
+        $("#Input_BirthData_BirthCity").observe("added", function () {
+            $("#Input_BirthData_BirthCity").selectOptionByValue("AGRIGENTO");
+            $("#Input_BirthData_BirthCity").disconnect();
+        });
+
+        // Selects
+        $("#Input_AddressData_AddressState, #Input_SecurityData_SecurityQuestion, #Input_IdentificationData_DocumentType, #Input_IdentificationData_DocumentReleasedBy").selectOptionByIndex(1);
+
+        // Set password
+        $("#Input_LoginData_Password, #Input_LoginData_PasswordConfirmation, #Input_SecurityData_SecurityAnswer").val("123123q");
+
+        $("#Input_AddressData_AddressLine1").val("address");
+        $("#Input_AddressData_AddressLine2").val("address2");
+        $("#Input_AddressData_AddressZip").val("12312");
+        $("#Input_AddressData_AddressCity").val("cityName");
+        $("#Input_ContactData_EmailAddress").val(Random.getEmail(8, "bwin.it"));
+        $("#Input_ContactData_PhoneNumber").val("1231231");
+
+        // Set date
+        $("#Input_BirthData_DateOfBirth, #Input_IdentificationData_DocumentReleaseDate").setDate(1, 1, 1992);
+
+        // Account data
+        $("#Input_LoginData_Username").val(userId);
+
+        // ID document
+        $("#Input_IdentificationData_DocumentNumber").val("documentNumber");
+        $("#Input_IdentificationData_DocumentReleaseLocation").val("releaseLocation");
+
+        $("#Input_TermsAndConditions_TacAcceptance, #Input_PrivacyPolicy_PrivacyPolicyAccepted").check();
+        $("#Captcha_Input_Answer").val("+++");
+    }
 });

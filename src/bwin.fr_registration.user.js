@@ -3,7 +3,7 @@
 // @namespace   bwin.fr registration
 // @description prefill registration form
 // @include     *www.bwin.fr/*/registration*
-// @version     3.1
+// @version     3.1.1
 // @grant       none
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @require     https://raw.githubusercontent.com/kapetan/jquery-observe/master/jquery-observe.js

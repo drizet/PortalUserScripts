@@ -24,11 +24,12 @@
 
     $.fn.check = function () {
         return this.each(function () {
-            if ($(this).attr("checked") === "checked") {
+            console.log($(this).prop("checked"));
+            if ($(this).prop("checked")) {
                 return;
             }
 
-            $(this).attr("checked", "checked");
+            $(this).prop("checked", true);
             $(this).parent().addClass("checked").click();
         });
     }

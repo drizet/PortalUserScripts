@@ -4,7 +4,7 @@
 // @description prefill Date of Birth for login
 // @include     *www.bwin.fr*
 // @exclude     *www.bwin.fr/*/account/contact
-// @version     1.2
+// @version     1.2.1
 // @grant       none
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/stub/core.js

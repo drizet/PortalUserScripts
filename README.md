@@ -4,7 +4,6 @@
 ##Features:
 
 - Prefill values
-- Copy login to clipboard(italy label)
 - Auto updates
 
 ##Install guide:

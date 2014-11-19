@@ -4,8 +4,7 @@
 // @namespace   giocodigitale.it registration
 // @description prefill registration form
 // @include     *giocodigitale.it/*/registration*
-// @version     5.1
-// @grant       GM_setClipboard
+// @version     5.2
 // ==/UserScript==
 
 if($("#registration-form").length){
@@ -59,8 +58,6 @@ if($("#registration-form").length){
 	$("#Input_TermsAndConditions_TacAcceptance, #Input_PrivacyPolicy_PrivacyPolicyAccepted").attr("checked", "checked");
 	$("#Input_TermsAndConditions_TacAcceptance, #Input_PrivacyPolicy_PrivacyPolicyAccepted").parent().addClass("checked");
 	$("#Captcha_Input_Answer").val("+++");
-
-	GM_setClipboard(userEmail, "text");
 }
 
 function getEmail(symbolsCount, domain) {

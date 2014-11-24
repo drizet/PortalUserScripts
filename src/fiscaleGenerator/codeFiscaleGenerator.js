@@ -1,5 +1,5 @@
 ﻿function CodeFiscaleGenerator(settings) {
-    var webService = "http://VIW20142:7485/api/AamsRegistration";
+    var webService = "http://VIW20022:7485/api/AamsRegistration";
 
     function generateCodeFiscaleInner(){
         var def = $.Deferred();

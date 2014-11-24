@@ -1,8 +1,20 @@
 ﻿function UI() { }
 
-UI.createInterface = function (domains, successCallback) {
-    if ($.isArray(domains)) {
-        
+UI.createInterface = function (successCallback){
+    var domain;
+    if (window.location.host.indexOf('www.bwin.it') !== -1) {
+        domain = {
+            text : "Bwin",
+            id : "4",
+            value : "BWINIT"
+        };
+    }
+    else {
+        domain = {
+            text : "Gioco",
+            id : "1",
+            value : "GIOCOD"
+        };
     }
 
     var statuses = [
@@ -52,7 +64,6 @@ UI.createInterface = function (domains, successCallback) {
         }
     ];
 
-
     function createList(id, list) {
         var select = $('<select id="' + id + '"/>');
         for (var i = 0; i < list.length; i++) {
@@ -79,8 +90,7 @@ UI.createInterface = function (domains, successCallback) {
             padding: "10px 10px 10px 10px"
         }).appendTo('div.container');
 
-    // Create domain list and text
-    addRow("Domain: ", createList("domainList", domains));
+    mainDiv.append($("<h3>").append("SSN Registrator"));
     // Create registration status list and text
     addRow("Registration status: ", createList("statusList", statuses));
     // Create subregistration status status list
@@ -92,19 +102,8 @@ UI.createInterface = function (domains, successCallback) {
 
     // Send request
     button.click(function () {
-        function getDomain() {
-            var domainValue = $("#domainList").val();
-            for (var i = 0; i < domains.length; i++) {
-                if (domains[i].value == domainValue) {
-                    return domains[i];
-                }
-            }
-
-            return null;
-        }
-
         var settings = {
-            domain: getDomain(),
+            domain: domain,
             registrationId: $("#statusList").val(),
             subRegistrationId: $("#subStatusList").val()
         };
@@ -117,4 +116,4 @@ UI.createInterface = function (domains, successCallback) {
                 }
             });
     });
-}
+};

@@ -1,88 +1,55 @@
 // ==UserScript==
-// @require     http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
-// @name        bwin.it registration
-// @namespace   bwin.it registration
-// @description prefill registration form
+// @name        BWI and GD registration
+// @namespace   BWI and GD registration
+// @description prefill registration form on BWI and GD
 // @include     *www.bwin.it/*/registration*
-// @version     5.2
+// @include     *giocodigitale.it/*/registration*
+// @version     5.5.0
+// @grant       GM_xmlhttpRequest
+// @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
+// @require     https://raw.githubusercontent.com/kapetan/jquery-observe/master/jquery-observe.js
+// @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/random.js
+// @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/common.js
 // ==/UserScript==
 
-if($("#registration-form").length) {
-	var userId = getRandomText("test", 4);
-	
-	// Personal data
-	$("#Input_NameData_FirstName").val(getRandomText(null, false, 10));
-	$("#Input_NameData_LastName").val(getRandomText(null, false, 10));
-	// Date Of Birth
-	$("#Input_BirthData_DateOfBirth_Day").val("1");
-	$("#Input_BirthData_DateOfBirth_Month").val("1");
-	$("#Input_BirthData_DateOfBirth_Year").val("1992");
-	$("#Input_BirthData_DateOfBirth").attr("value", "1/1/1992");
-	// Birth data
-	$("#Input_BirthData_BirthCountry").val("IT");
-	setTimeout(function(){
-		$("#Input_BirthData_BirthState").val("AG").click();
-	}, 3000);
-	setTimeout(function(){
-		$("#Input_BirthData_BirthCity").val("AGRIGENTO").click();
-		$("#ConfirmCodiceFiscale #Input_BirthData_FiscalCodeConfirmed").attr("checked", "checked").click();
-		$("#ConfirmCodiceFiscale #Input_BirthData_FiscalCodeConfirmed").parent().addClass("checked");
-	}, 4500);
+$(function () {
+    if ($("#registration-form").length) {
+        // Personal data
+        $("#Input_NameData_FirstName").val(Random.getText(10));
+        $("#Input_NameData_LastName").val(Random.getText(10));
 
-	$("#Input_AddressData_AddressState").val("AG");
-	$("#Input_AddressData_AddressLine1").val("address");
-	$("#Input_AddressData_AddressLine2").val("address2");
-	$("#Input_AddressData_AddressZip").val("12312");
-	$("#Input_AddressData_AddressCity").val("cityName");
-	$("#Input_ContactData_EmailAddress").val(getEmail(8, "bwin.it"));
-	$("#Input_ContactData_PhoneNumber").val("1231231");
+        // Birth data
+        $("#Input_BirthData_BirthCountry").selectOptionByValue("IT");
+        $("#Input_BirthData_BirthState").selectOptionByValue("AG");
+        $("#Input_BirthData_BirthCity").observe("added", function () {
+            $("#Input_BirthData_BirthCity").selectOptionByValue("AGRIGENTO");
+            $("#Input_BirthData_BirthCity").disconnect();
+        });
 
-	// Account data
-	$("#Input_LoginData_Username").val(userId);
-	$("#Input_LoginData_Password").val("123123q");
-	$("#Input_LoginData_PasswordConfirmation").val("123123q");
-	$("#Input_SecurityData_SecurityQuestion").val(11);
-	$("#Input_SecurityData_SecurityAnswer").val("123123q");
+        // Selects
+        $("#Input_AddressData_AddressState, #Input_SecurityData_SecurityQuestion, #Input_IdentificationData_DocumentType, #Input_IdentificationData_DocumentReleasedBy").selectOptionByIndex(1);
 
-	// ID document
-	$("#Input_IdentificationData_DocumentType").val(1);
-	$("#Input_IdentificationData_DocumentNumber").val("documentNumber");
-	// Release Date
-	$("#Input_IdentificationData_DocumentReleaseDate_Day").val("1");
-	$("#Input_IdentificationData_DocumentReleaseDate_Month").val("1");
-	$("#Input_IdentificationData_DocumentReleaseDate_Year").val("1992");
-	$("#Input_IdentificationData_DocumentReleaseDate").attr("value", "1/1/1992");
-	$("#Input_IdentificationData_DocumentReleasedBy").val("1");
-	$("#Input_IdentificationData_DocumentReleaseLocation").val("releaseLocation");
+        // Set password
+        $("#Input_LoginData_Password, #Input_LoginData_PasswordConfirmation, #Input_SecurityData_SecurityAnswer").val("123123q");
 
-	$("#Input_TermsAndConditions_TacAcceptance, #Input_PrivacyPolicy_PrivacyPolicyAccepted").attr("checked", "checked");
-	$("#Input_TermsAndConditions_TacAcceptance, #Input_PrivacyPolicy_PrivacyPolicyAccepted").parent().addClass("checked");
-	$("#Captcha_Input_Answer").val("+++");
-}
+        $("#Input_AddressData_AddressLine1").val("address");
+        $("#Input_AddressData_AddressLine2").val("address2");
+        $("#Input_AddressData_AddressZip").val("12312");
+        $("#Input_AddressData_AddressCity").val("cityName");
+        $("#Input_ContactData_EmailAddress").val(Random.getEmail(8, "bwin.it"));
+        $("#Input_ContactData_PhoneNumber").val("1231231");
 
-function getEmail(symbolsCount, domain) {
-    return getRandomText(null, true, symbolsCount) + "@" + domain;
-}
+        // Set date
+        $("#Input_BirthData_DateOfBirth, #Input_IdentificationData_DocumentReleaseDate").setDate(1, 1, 1992);
 
-function getRandomText(prefix, hasNumbers, symbolsCount) {
-    if(symbolsCount == null)
-        symbolsCount = 5;
-    
-    var text = "";
-    var symbols = "abcdefghijklmnopqrstuvwxyz";
-    
-    if(hasNumbers)
-    {
-       symbols += "0123456789"
+        // Account data
+        $("#Input_LoginData_Username").val(Random.getUserName(4));
+
+        // ID document
+        $("#Input_IdentificationData_DocumentNumber").val("documentNumber");
+        $("#Input_IdentificationData_DocumentReleaseLocation").val("releaseLocation");
+
+        $("#Input_TermsAndConditions_TacAcceptance, #Input_PrivacyPolicy_PrivacyPolicyAccepted").check();
+        $("#Captcha_Input_Answer").val("+++");
     }
-    
-    for( var i = 0; i < symbolsCount; i++ )
-        text += symbols.charAt(Math.floor(Math.random() * symbols.length));
-    
-    if(prefix == null)
-    {
-       prefix = "";
-    }
-    
-    return prefix + text;
-}
+});

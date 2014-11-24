@@ -3,10 +3,10 @@
 // @namespace   bwin.fr
 // @description prefill bank account
 // @include     *www.bwin.fr/*/account/bankaccountregistration*
-// @version     2.1.1
+// @version     2.1.2
 // @grant       none
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
-// @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/stub/core.js
+// @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/common.js
 // ==/UserScript==
 
 $(function () {

@@ -24,7 +24,6 @@
 
     $.fn.check = function () {
         return this.each(function () {
-            console.log($(this).prop("checked"));
             if ($(this).prop("checked")) {
                 return;
             }

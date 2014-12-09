@@ -4,7 +4,7 @@
 // @description prefill registration form on BWI and GD
 // @include     *www.bwin.it/*/registration*
 // @include     *giocodigitale.it/*/registration*
-// @version     5.5.0
+// @version     5.5.1
 // @grant       GM_xmlhttpRequest
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @require     https://raw.githubusercontent.com/kapetan/jquery-observe/master/jquery-observe.js

@@ -19,6 +19,7 @@
             $("#" + id + "_Month").selectOptionByIndex(month);
             $("#" + id + "_Year").val(year.toString());
             $(this).val(day + '/' + month + '/' + year);
+			$("div[data-valmsg-for='"+ id.replace(/_/g, ".") +"']").removeClass("field-validation-error");
         });
     }
 

@@ -73,8 +73,8 @@ UI.createInterface = function (successCallback){
         return select;
     }
 
-    function addRow(text, list) {
-        mainDiv.append($("<div>").append(text).append("<br/>").append(list));
+    function addRow(text, element) {
+        return mainDiv.append($("<div>").append(text).append("<br/>").append(element));
     }
 
     // Create main container
@@ -97,11 +97,12 @@ UI.createInterface = function (successCallback){
     addRow("Sub registration status: ", createList("subStatusList", statuses));
 
     // Create generate button
-    var button = $("<button>Fill</button>");
-    mainDiv.append(button);
+    var registerButton = $("<button>Register</button>");
+    mainDiv.append(registerButton);
+    mainDiv.append($("<div>").append(text).append("<br/>").append(element));
 
     // Send request
-    button.click(function () {
+    registerButton.click(function () {
         var settings = {
             domain: domain,
             registrationId: $("#statusList").val(),

@@ -4,7 +4,7 @@
 // @description prefill registration form on BWI and GD
 // @include     *www.bwin.it/*/registration*
 // @include     *giocodigitale.it/*/registration*
-// @version     5.5.0
+// @version     5.5.1
 // @grant       GM_xmlhttpRequest
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @require     https://raw.githubusercontent.com/kapetan/jquery-observe/master/jquery-observe.js
@@ -21,7 +21,7 @@ $(function () {
         // Birth data
         $("#Input_BirthData_BirthCountry").selectOptionByValue("IT");
         $("#Input_BirthData_BirthState").selectOptionByValue("AG");
-        $("#Input_BirthData_BirthCity").observe("added", function () {
+        $("#Input_BirthData_BirthCity").observe("childlist", 'option:first', function () {
             $("#Input_BirthData_BirthCity").selectOptionByValue("AGRIGENTO");
             $("#Input_BirthData_BirthCity").disconnect();
         });

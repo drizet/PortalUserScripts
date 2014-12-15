@@ -2,7 +2,7 @@
 // @name        BWI And GD SSN Registration for Stub server
 // @namespace   bwin.it registration
 // @description SSN Registration for Stub server
-// @version     1.0.0
+// @version     1.0.1
 // @include     *.www.bwin.it/*/registration*
 // @include     *qa*www.internal.giocodigitale.it/*/registration*
 // @include     *dev.www.giocodigitale.it/*/registration*
@@ -17,7 +17,6 @@ $(function () {
     if ($("#registration-form").length) {
         UI.createInterface(function (codeFiscale) {
             $("#Input_BirthData_FiscalCode").val(codeFiscale);
-            $("#ConfirmCodiceFiscale #Input_BirthData_FiscalCodeConfirmed").check();
         });
     }
 });

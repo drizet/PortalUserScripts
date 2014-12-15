@@ -99,7 +99,6 @@ UI.createInterface = function (successCallback){
     // Create generate button
     var registerButton = $("<button>Register</button>");
     mainDiv.append(registerButton);
-    mainDiv.append($("<div>").append(text).append("<br/>").append(element));
 
     // Send request
     registerButton.click(function () {

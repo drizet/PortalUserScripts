@@ -27,6 +27,10 @@ UI.createInterface = function (successCallback){
             text: "KO"
         },
         {
+            value: 1402,
+            text: "TO"
+        },
+        {
             value: 1026,
             text: "Request still being processed"
         },

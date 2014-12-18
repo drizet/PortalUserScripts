@@ -1,18 +1,17 @@
 ﻿function CodeFiscaleGenerator(settings) {
-    var webService = "http://VIW20022:7485/api/AamsRegistration";
+    var webService = "http://VIW20022:7485/api/AamsRegistration/";
 
     function generateCodeFiscaleInner(){
         var def = $.Deferred();
 
         var request = {
-            labelId : settings.domain.id,
             registrationStatus : settings.registrationId,
             subregistrationStatus : settings.subRegistrationId
         };
 
         GM_xmlhttpRequest({
             method: "Post",
-            url: webService,
+            url: webService + settings.domain.id,
             data: JSON.stringify(request),
             headers: {
                 "Content-Type": "application/json",

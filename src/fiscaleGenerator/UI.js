@@ -4,16 +4,12 @@ UI.createInterface = function (successCallback){
     var domain;
     if (window.location.host.indexOf('www.bwin.it') !== -1) {
         domain = {
-            text : "Bwin",
             id : "4",
-            value : "BWINIT"
         };
     }
     else {
         domain = {
-            text : "Gioco",
             id : "1",
-            value : "GIOCOD"
         };
     }
 

@@ -46,10 +46,11 @@ Random.getText = function (symbolsCount, prefix, hasNumbers){
 Random.getNumbers = function (symbolsCount) {
     var numbers = "";
     var symbols = "0123456789";
-
-    for (var i = 0; i < symbolsCount; i++) {
+    
+    numbers += Random.getRandomCharacter(symbols.substring(1));
+    for (var i = 0; i < symbolsCount - 1; i++) {
         numbers += Random.getRandomCharacter(symbols);
     }
 
-    return parseInt(numbers);
+    return numbers;
 };

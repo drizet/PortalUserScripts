@@ -4,7 +4,7 @@
 // @description prefill registration form on BWI and GD
 // @include     *www.bwin.it/*/registration*
 // @include     *giocodigitale.it/*/registration*
-// @version     5.6.0
+// @version     5.6.1
 // @grant       GM_xmlhttpRequest
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @require     https://raw.githubusercontent.com/kapetan/jquery-observe/master/jquery-observe.js
@@ -33,7 +33,7 @@ $(function () {
         $("#Input_AddressData_AddressState, #Input_SecurityData_SecurityQuestion, #Input_IdentificationData_DocumentType, #Input_IdentificationData_DocumentReleasedBy").selectOptionByIndex(1);
 
         // Set password
-        $("#Input_LoginData_Password, #Input_LoginData_PasswordConfirmation, #Input_SecurityData_SecurityAnswer").val("123123q");
+        $("#Input_LoginData_Password, #Input_LoginData_PasswordConfirmation, #Input_SecurityData_SecurityAnswer").val("123123qq");
 
         $("#Input_AddressData_AddressLine1").val("address");
         $("#Input_AddressData_AddressLine2").val("address2");

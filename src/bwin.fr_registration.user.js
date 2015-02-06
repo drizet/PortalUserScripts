@@ -3,7 +3,7 @@
 // @namespace   bwin.fr registration
 // @description prefill registration form
 // @include     *www.bwin.fr/*/registration*
-// @version     3.1.2
+// @version     3.1.3
 // @grant       none
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @require     https://raw.githubusercontent.com/kapetan/jquery-observe/master/jquery-observe.js
@@ -40,10 +40,10 @@ $(document).ready(function () {
     $("#Input_ContactData_EmailAddress").val(getEmail(8, "bwin.fr"));
     $("#Input_ContactData_PhoneNumber").val("1231231");
     $("#Input_LoginData_Username").val(getRandomText("test", 4));
-    $("#Input_LoginData_Password").val("123123q");
-    $("#Input_LoginData_PasswordConfirmation").val("123123q");
+    $("#Input_LoginData_Password").val("123123qq");
+    $("#Input_LoginData_PasswordConfirmation").val("123123qq");
     $("#Input_SecurityData_SecurityQuestion").selectOptionByValue(17);
-    $("#Input_SecurityData_SecurityAnswer").val("123123q");
+    $("#Input_SecurityData_SecurityAnswer").val("123123qq");
     $("#Input_TermsAndConditions_TacAcceptance, #Input_PrivacyPolicy_PrivacyPolicyAccepted, #Input_BonusData_BonusTacAccepted").check();
     $("#Captcha_Input_Answer").val("+++");
 });

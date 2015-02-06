@@ -2,10 +2,9 @@
 // @name        BWI And GD SSN Registration for Stub server
 // @namespace   bwin.it registration
 // @description SSN Registration for Stub server
-// @version     2.1.2
+// @version     2.1.3
 // @include     *.www.bwin.it/*/registration*
-// @include     *qa*www.internal.giocodigitale.it/*/registration*
-// @include     *dev.www.giocodigitale.it/*/registration*
+// @include     *.www.internal.giocodigitale.it/*/registration*
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // ==/UserScript==
 

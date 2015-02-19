@@ -4,7 +4,7 @@
 // @description prefill registration form on BWI and GD
 // @include     *www.bwin.it/*/registration*
 // @include     *giocodigitale.it/*/registration*
-// @version     5.6.1
+// @version     5.7.0
 // @grant       GM_xmlhttpRequest
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @require     https://raw.githubusercontent.com/kapetan/jquery-observe/master/jquery-observe.js
@@ -43,11 +43,16 @@ $(function () {
         $("#Input_ContactData_PhoneNumber").val("1231231");
 
         // Set date
-        $("#Input_BirthData_DateOfBirth, #Input_IdentificationData_DocumentReleaseDate").setDate(1, 1, 1992);
+        $("#Input_BirthData_DateOfBirth").setDate(1, 1, 1992);
+        $("#Input_IdentificationData_DocumentReleaseDate").setDate(1, 1, 2010);
 
         // Account data
         $("#Input_LoginData_Username").val(Random.getUserName(4));
 
+        // Mobile number
+        $("#Input_ContactData_MobileCountryCode").selectOptionByValue("39");
+        $("#Input_ContactData_MobileNumber").val("3471234567");
+        
         // ID document
         $("#Input_IdentificationData_DocumentNumber").val("documentNumber");
         $("#Input_IdentificationData_DocumentReleaseLocation").val("releaseLocation");

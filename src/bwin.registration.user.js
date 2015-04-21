@@ -6,7 +6,7 @@
 // @include     *gamebookers.com*/registration*
 // @exclude     *bwin.it*
 // @exclude     *bwin.fr*
-// @version     0.3.0
+// @version     0.3.1
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/random.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/common.js
@@ -33,7 +33,7 @@ $(function () {
 
         $("#Input_CurrencyData_CurrencyCode").selectOptionByValue("EUR");
         $("#Input_BirthData_DateOfBirth").setDate(1, 1, 1992);
-        $("#Input_ContactData_EmailAddress").val(Random.getEmail(8, "bwin.com"));
+        $("#Input_ContactData_EmailAddress").val(Random.getEmail(8, "yopmail.com"));
         $("#Input_ContactData_PhoneNumber").val("1231231");
 
         // Account data

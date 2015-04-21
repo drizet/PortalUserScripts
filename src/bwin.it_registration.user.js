@@ -4,7 +4,7 @@
 // @description prefill registration form on BWI and GD
 // @include     *www.bwin.it/*/registration*
 // @include     *giocodigitale.it/*/registration*
-// @version     5.7.1
+// @version     5.7.2
 // @grant       GM_xmlhttpRequest
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @require     https://raw.githubusercontent.com/kapetan/jquery-observe/master/jquery-observe.js
@@ -39,7 +39,7 @@ $(function () {
         $("#Input_AddressData_AddressLine2").val("address2");
         $("#Input_AddressData_AddressZip").val("12312");
         $("#Input_AddressData_AddressCity").val("cityName");
-        $("#Input_ContactData_EmailAddress").val(Random.getEmail(8, "bwin.it"));
+        $("#Input_ContactData_EmailAddress").val(Random.getEmail(8, "yopmail.com"));
         $("#Input_ContactData_PhoneNumber").val("1231231");
 
         // Set date

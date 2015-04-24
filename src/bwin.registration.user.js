@@ -1,4 +1,4 @@
-﻿// ==UserScript==
+// ==UserScript==
 // @name        Bwin registration
 // @namespace   Bwin registration
 // @description Prefill registration form on for all bwin labels
@@ -13,18 +13,31 @@
 // ==/UserScript==
 
 $(function () {
-    function pad(n, width, z) {
-        z = z || '0';
-        n = n + '';
-        return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
-    }
-
-    function LabelIs(host) {
-	 return document.location.href.indexOf(host) != -1;
-    }
-
     if ($("#registration-form").length) {
-        // Personal data
+        SetPersonalData();
+        SetAccountData();       
+        SetConfirmationData();      
+
+        if(LabelIs("bwin.be"))
+        {
+            SetIdentificationData();
+        }
+
+        if(LabelIs("bwin.es"))
+        {
+            $("#Input_LoginData_Password, #Input_LoginData_PasswordConfirmation, #Input_SecurityData_SecurityAnswer").val("Password1");
+            $("#Input_ContactData_MobileNumber").val("751234567");
+            $("#Input_NameData_SecondLastName").val(Random.getText(10));
+            SetNieNifData();
+        }
+    }
+    
+    function LabelIs(host) {
+	      return document.location.href.indexOf(host) != -1;
+    }
+    
+    function SetPersonalData()
+    {
         $("#Input_NameData_FirstName").val(Random.getText(10));
         $("#Input_NameData_LastName").val(Random.getText(10));
         $("#Input_AddressData_AddressCountryCode").selectOptionByValue("GB");
@@ -33,44 +46,49 @@ $(function () {
         $("#Input_AddressData_AddressZip").val("2" + Random.getNumbers(4));
         $("#Input_AddressData_AddressLine1").val("address");
         $("#Input_AddressData_AddressLine2").val("address2");
-
         $("#Input_CurrencyData_CurrencyCode").selectOptionByValue("EUR");
         $("#Input_BirthData_DateOfBirth").setDate(1, 1, 1992);
         $("#Input_ContactData_EmailAddress").val(Random.getEmail(8, "yopmail.com"));
         $("#Input_ContactData_PhoneNumber").val("1231231");
-
-        // Account data
+    }
+    
+    function SetAccountData()
+    {
         $("#Input_LoginData_Username").val(Random.getUserName(4));
         $("#Input_LoginData_Password, #Input_LoginData_PasswordConfirmation, #Input_SecurityData_SecurityAnswer").val("123123qq");
         $("#Input_SecurityData_SecurityQuestion").selectOptionByIndex(1);
-
-        // Confirmation
+    }
+    
+    function SetConfirmationData()
+    {
         $("#Input_TermsAndConditions_TacAcceptance, #Input_BonusData_BonusTacAccepted").check();
         $("#Captcha_Input_Answer").val("+++");
-
-        // BE
+    }
+    
+    function SetIdentificationData()
+    {
         var nrnDate = "920101";
         var nrnSerialNumber = Random.getNumbers(3);
         var nrnChecksum = 97 - (parseInt(nrnDate + nrnSerialNumber) % 97);
-
+        
         $("#Input_IdentificationData_NRNDate").val(nrnDate);
         $("#Input_IdentificationData_NRNSerialNumber").val(nrnSerialNumber);
         $("#Input_IdentificationData_NRNChecksum").val(pad(nrnChecksum, 2));
         $("#Input_IdentificationData_Profession").selectOptionByIndex(1);
         $("#Input_IdentificationData_CityOfBirth").val(Random.getText(6));
-
-        // ES
-	if(LabelIs("bwin.es"))
-	{
- 	   $("#Input_LoginData_Password, #Input_LoginData_PasswordConfirmation, #Input_SecurityData_SecurityAnswer").val("Password1");
-
-	   $("#Input_ContactData_MobileNumber").val("751234567");
-
-           var dni = Random.getNumbers(8);
-           var characters = "TRWAGMYFPDXBNJZSQVHLCKE";
-           dni = dni + characters[parseInt(dni) % 23];
-           $("#Input_NameData_SecondLastName").val(Random.getText(10));
-           $("#Input_NieNif_IdDocumentNumber").val(dni);
-	}
+    }
+    
+    function SetNieNifData()
+    {
+        var dni = Random.getNumbers(8);
+        var characters = "TRWAGMYFPDXBNJZSQVHLCKE";
+        dni = dni + characters[parseInt(dni) % 23];
+        $("#Input_NieNif_IdDocumentNumber").val(dni);
+    }
+    
+    function pad(n, width, z) {
+        z = z || '0';
+        n = n + '';
+        return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
     }
 });

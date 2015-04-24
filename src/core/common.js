@@ -35,7 +35,7 @@
     }
 
 
-    LabelIs = function (string host) {
+    LabelIs = function (host) {
 	      return document.location.href.indexOf(host) != -1;
     }
 });

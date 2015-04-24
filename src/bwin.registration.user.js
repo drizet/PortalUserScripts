@@ -19,6 +19,9 @@ $(function () {
         return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
     }
 
+    function LabelIs(host) {
+	 return document.location.href.indexOf(host) != -1;
+    }
 
     if ($("#registration-form").length) {
         // Personal data

@@ -6,7 +6,7 @@
 // @include     *gamebookers.com*/registration*
 // @exclude     *bwin.it*
 // @exclude     *bwin.fr*
-// @version     0.3.2
+// @version     0.3.3
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/random.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/common.js

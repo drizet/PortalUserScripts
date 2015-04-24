@@ -33,4 +33,9 @@
             $(this).parent().addClass("checked").click();
         });
     }
+
+
+    $.fn.LabelIs = function (string host) {
+	      return document.location.href.indexOf(host) != -1;
+    }
 });

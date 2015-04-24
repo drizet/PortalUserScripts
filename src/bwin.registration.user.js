@@ -57,13 +57,17 @@ $(function () {
         $("#Input_IdentificationData_CityOfBirth").val(Random.getText(6));
 
         // ES
-        var dni = Random.getNumbers(8);
+	if($.LabelIs("bwin.es"))
+	{
+ 	   $("#Input_LoginData_Password, #Input_LoginData_PasswordConfirmation, #Input_SecurityData_SecurityAnswer").val("Password1");
 
-        var characters = "TRWAGMYFPDXBNJZSQVHLCKE";
+	   $("#Input_ContactData_MobileNumber").val("751234567");
 
-        dni = dni + characters[parseInt(dni) % 23];
-
-        $("#Input_NameData_SecondLastName").val(Random.getText(10));
-        $("#Input_NieNif_IdDocumentNumber").val(dni);
+           var dni = Random.getNumbers(8);
+           var characters = "TRWAGMYFPDXBNJZSQVHLCKE";
+           dni = dni + characters[parseInt(dni) % 23];
+           $("#Input_NameData_SecondLastName").val(Random.getText(10));
+           $("#Input_NieNif_IdDocumentNumber").val(dni);
+	}
     }
 });

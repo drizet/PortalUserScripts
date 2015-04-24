@@ -35,7 +35,7 @@
     }
 
 
-    $.fn.LabelIs = function (string host) {
+    LabelIs = function (string host) {
 	      return document.location.href.indexOf(host) != -1;
     }
 });

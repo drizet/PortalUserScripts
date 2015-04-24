@@ -57,7 +57,7 @@ $(function () {
         $("#Input_IdentificationData_CityOfBirth").val(Random.getText(6));
 
         // ES
-	if($.LabelIs("bwin.es"))
+	if(LabelIs("bwin.es"))
 	{
  	   $("#Input_LoginData_Password, #Input_LoginData_PasswordConfirmation, #Input_SecurityData_SecurityAnswer").val("Password1");
 

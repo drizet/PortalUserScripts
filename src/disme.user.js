@@ -2,7 +2,7 @@
 // @name        Disme QA2 ALL Labels
 // @namespace   Disme
 // @include     https://disme.bwin.corp/out/out.Deploy.php
-// @version     1.1
+// @version     1.1.1
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @grant       none
 // ==/UserScript==
@@ -14,7 +14,7 @@ $(document).ready(function() {
    var targets = $("#form1 td:contains('home.'):not(:contains('WPOR'),:contains('PMU.FR'),:contains('PP.FR'))");
 
    // Uncheck selected targets if page was refreshed.
-   var inputs = targets.parent().find("input:checked").prop("checked", false);
+   targets.parent().find("input:checked").prop("checked", false);
    
    var to = 0;
    var from = 0;

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Disme QA2 ALL Labels
 // @namespace   Disme
-// @include     https://disme.bwin.corp./out/out.Deploy.php
+// @include     https://disme.bwin.corp/out/out.Deploy.php
 // @version     1
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @grant       none

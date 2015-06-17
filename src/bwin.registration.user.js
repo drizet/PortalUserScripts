@@ -6,7 +6,7 @@
 // @include     *gamebookers.com*/registration*
 // @exclude     *bwin.it*
 // @exclude     *bwin.fr*
-// @version     0.3.4
+// @version     0.3.5
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/random.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/common.js
@@ -25,7 +25,7 @@ $(function () {
 
         if(LabelIs("bwin.es"))
         {
-            $("#Input_LoginData_Password, #Input_LoginData_PasswordConfirmation, #Input_SecurityData_SecurityAnswer").val("Password1");
+            $("#Input_LoginData_Password, #Input_LoginData_PasswordConfirmation, #Input_SecurityData_SecurityAnswer").val("123123Qq");
             $("#Input_ContactData_MobileNumber").val("751234567");
             $("#Input_NameData_SecondLastName").val(Random.getText(10));
             SetNieNifData();

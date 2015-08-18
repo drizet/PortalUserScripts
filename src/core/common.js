@@ -4,7 +4,7 @@
 
         if (item.length) {
             $(options.self).find("option:selected").removeAttr("selected");
-            item.prop("selected", true).click().change();
+            item.prop("selected", true).click();
         }
     }
 

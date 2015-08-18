@@ -4,44 +4,49 @@
 // @description Prefill registration form on for all bwin labels
 // @include     *bwin.*/registration*
 // @include     *gamebookers.com*/registration*
-// @exclude     *bwin.it*
-// @exclude     *bwin.fr*
-// @version     0.3.5
+// @include     *giocodigitale.it*/registration*
+// @version     0.4
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
-// @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/random.js
+// @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/Random.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/common.js
 // ==/UserScript==
 
 $(function () {
+    // Portal labels
+    var BAW = "bwin.com";
+    var BE = "bwin.be";
+    var ES = "bwin.es";
+    var SHDE = "sh.bwin.de";
+    var FR = "bwin.fr";
+    var IT = "bwin.it";
+    var GD = "giocodigitale.it";
+    var GB = "gamebookers.com";
+    var GR = "bwin.gr";
+
     if ($("#registration-form").length) {
-        SetPersonalData();
-        SetAccountData();       
-        SetConfirmationData();      
+        SetupPersonalData();
+        SetupAccountData();
 
-        if(LabelIs("bwin.be"))
-        {
-            SetIdentificationData();
+        if (LabelIs(BE)) {
+            SetupIdentificationData();
         }
 
-        if(LabelIs("bwin.es"))
-        {
-            $("#Input_LoginData_Password, #Input_LoginData_PasswordConfirmation, #Input_SecurityData_SecurityAnswer").val("123123Qq");
-            $("#Input_ContactData_MobileNumber").val("751234567");
-            $("#Input_NameData_SecondLastName").val(Random.getText(10));
-            SetNieNifData();
+        if (LabelIs(ES)) {
+            SetupNieNifData();
         }
+        
+        if(LabelIs(IT) || LabelIs(GD)){
+            SetupDocumentData();
+        }
+        
+        SetupConfirmationData();
     }
-    
-    function LabelIs(host) {
-	      return document.location.href.indexOf(host) != -1;
-    }
-    
-    function SetPersonalData()
-    {
+
+    function SetupPersonalData() {
         $("#Input_NameData_FirstName").val(Random.getText(10));
         $("#Input_NameData_LastName").val(Random.getText(10));
-        $("#Input_AddressData_AddressCountryCode").selectOptionByValue("GB");
-        $("#Input_AddressData_AddressState").selectOptionByIndex(1);
+        $("#Input_AddressData_AddressCountryCode").selectOptionByIndex(1);
+        $("#Input_AddressData_AddressState").selectOptionByIndexAsync(1);
         $("#Input_AddressData_AddressCity").val(Random.getText(6));
         $("#Input_AddressData_AddressZip").val("2" + Random.getNumbers(4));
         $("#Input_AddressData_AddressLine1").val("address");
@@ -49,46 +54,90 @@ $(function () {
         $("#Input_CurrencyData_CurrencyCode").selectOptionByValue("EUR");
         $("#Input_BirthData_DateOfBirth").setDate(1, 1, 1992);
         $("#Input_ContactData_EmailAddress").val(Random.getEmail(8, "yopmail.com"));
-        $("#Input_ContactData_PhoneNumber").val("1231231");
+        $("#Input_ContactData_MobileCountryCode").selectOptionByValueAsync("380")
+        $("#Input_ContactData_MobileNumber").val(Random.getNumbers(7));
+
+        if (LabelIs(ES)) {
+            $("#Input_NameData_SecondLastName").val(Random.getText(10));
+        }
+
+        if (LabelIs(SHDE)) {
+            $("#Input_AddressData_Nationality").selectOptionByIndex(1);
+            $("#Input_BirthData_PlaceOfBirth").val(Random.getText(7));
+        }
+
+        if (LabelIs(FR) || LabelIs(IT) || LabelIs(GD)) {
+            $("#Input_BirthData_BirthState").selectOptionByIndex(2);
+            $("#Input_BirthData_BirthCity").selectOptionByIndexAsync(1);
+        }
+        
+        if(LabelIs(IT) || LabelIs(GD)){
+            $("#Input_BirthData_FiscalCodeConfirmed").checkWhen("#Input_BirthData_FiscalCode:text");
+        }
     }
-    
-    function SetAccountData()
-    {
+
+    function SetupAccountData() {
+        if (LabelIs(ES)) {
+            SetPassword("123123Qq")
+        }
+        else {
+            SetPassword("123123qq")
+        }
         $("#Input_LoginData_Username").val(Random.getUserName(4));
-        $("#Input_LoginData_Password, #Input_LoginData_PasswordConfirmation, #Input_SecurityData_SecurityAnswer").val("123123qq");
+
         $("#Input_SecurityData_SecurityQuestion").selectOptionByIndex(1);
     }
-    
-    function SetConfirmationData()
-    {
-        $("#Input_TermsAndConditions_TacAcceptance, #Input_BonusData_BonusTacAccepted").check();
+
+    function SetPassword(password) {
+        $("#Input_LoginData_Password, #Input_LoginData_PasswordConfirmation, #Input_SecurityData_SecurityAnswer").val(password);
+    }
+
+    function SetupConfirmationData() {
+        $("#Input_TermsAndConditions_TacAcceptance, #Input_BonusData_BonusTacAccepted, #Input_PrivacyPolicy_PrivacyPolicyAccepted").check();
+        
+        if(LabelIs(IT) || LabelIs(GD)){
+            $("#Input_NewslettersSubscription_NewslettersSubscriptionAccepted, #Input_OtherNoticeSubscription_OtherNoticeSubscriptionsAccepted").check()
+        }
+
         $("#Captcha_Input_Answer").val("+++");
     }
-    
-    function SetIdentificationData()
-    {
+
+    function SetupIdentificationData() {
         var nrnDate = "920101";
         var nrnSerialNumber = Random.getNumbers(3);
         var nrnChecksum = 97 - (parseInt(nrnDate + nrnSerialNumber) % 97);
-        
+
         $("#Input_IdentificationData_NRNDate").val(nrnDate);
         $("#Input_IdentificationData_NRNSerialNumber").val(nrnSerialNumber);
         $("#Input_IdentificationData_NRNChecksum").val(pad(nrnChecksum, 2));
         $("#Input_IdentificationData_Profession").selectOptionByIndex(1);
         $("#Input_IdentificationData_CityOfBirth").val(Random.getText(6));
     }
-    
-    function SetNieNifData()
-    {
+
+    function SetupNieNifData() {
+        $("#Input_NieNif_TaxProvince").selectOptionByIndex(1);
+
         var dni = Random.getNumbers(8);
         var characters = "TRWAGMYFPDXBNJZSQVHLCKE";
         dni = dni + characters[parseInt(dni) % 23];
         $("#Input_NieNif_IdDocumentNumber").val(dni);
     }
     
+    function SetupDocumentData(){
+        $("#Input_IdentificationData_DocumentType").selectOptionByIndex(1);
+        $("#Input_IdentificationData_DocumentNumber").val(Random.getText(6));
+        $("#Input_IdentificationData_DocumentReleaseDate").setDate(1, 1, 1992);
+        $("#Input_IdentificationData_DocumentReleasedBy").selectOptionByIndex(1);
+        $("#Input_IdentificationData_DocumentReleaseLocation").val(Random.getText(6));
+    }
+
     function pad(n, width, z) {
         z = z || '0';
         n = n + '';
         return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+    }
+
+    function LabelIs(host) {
+        return document.location.href.indexOf(host) != -1;
     }
 });

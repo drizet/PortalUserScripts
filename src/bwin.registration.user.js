@@ -5,7 +5,7 @@
 // @include     *bwin.*/registration*
 // @include     *gamebookers.com*/registration*
 // @include     *giocodigitale.it*/registration*
-// @version     0.4
+// @version     0.4.1
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/random.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/common.js

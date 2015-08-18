@@ -46,7 +46,7 @@ $(function () {
         $("#Input_NameData_FirstName").val(Random.getText(10));
         $("#Input_NameData_LastName").val(Random.getText(10));
         $("#Input_AddressData_AddressCountryCode").selectOptionByIndex(1);
-        $("#Input_AddressData_AddressState").selectOptionByIndexAsync(1);
+        $("#Input_AddressData_AddressState").selectOptionByIndex(1);
         $("#Input_AddressData_AddressCity").val(Random.getText(6));
         $("#Input_AddressData_AddressZip").val("2" + Random.getNumbers(4));
         $("#Input_AddressData_AddressLine1").val("address");
@@ -54,7 +54,7 @@ $(function () {
         $("#Input_CurrencyData_CurrencyCode").selectOptionByValue("EUR");
         $("#Input_BirthData_DateOfBirth").setDate(1, 1, 1992);
         $("#Input_ContactData_EmailAddress").val(Random.getEmail(8, "yopmail.com"));
-        $("#Input_ContactData_MobileCountryCode").selectOptionByValueAsync("380")
+        $("#Input_ContactData_MobileCountryCode").selectOptionByValue("380")
         $("#Input_ContactData_MobileNumber").val(Random.getNumbers(7));
 
         if (LabelIs(ES)) {
@@ -68,7 +68,7 @@ $(function () {
 
         if (LabelIs(FR) || LabelIs(IT) || LabelIs(GD)) {
             $("#Input_BirthData_BirthState").selectOptionByIndex(2);
-            $("#Input_BirthData_BirthCity").selectOptionByIndexAsync(1);
+            $("#Input_BirthData_BirthCity").selectOptionByIndex(1);
         }
         
         if(LabelIs(IT) || LabelIs(GD)){

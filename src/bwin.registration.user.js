@@ -5,13 +5,14 @@
 // @include     *bwin.*/registration*
 // @include     *gamebookers.com*/registration*
 // @include     *giocodigitale.it*/registration*
-// @version     0.4.1
+// @version     0.4.2
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
-// @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/random.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/common.js
+// @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/random.js
+// @require     https://raw.githubusercontent.com/blueimp/JavaScript-MD5/master/js/md5.min.js
 // ==/UserScript==
 
-$(function () {
+$(function () {    
     // Portal labels
     var BAW = "bwin.com";
     var BE = "bwin.be";
@@ -45,7 +46,14 @@ $(function () {
     function SetupPersonalData() {
         $("#Input_NameData_FirstName").val(Random.getText(10));
         $("#Input_NameData_LastName").val(Random.getText(10));
-        $("#Input_AddressData_AddressCountryCode").selectOptionByIndex(1);
+        
+        if(LabelIs(ES)){
+            $("#Input_AddressData_AddressCountryCode").selectOptionByValue("ES");
+        }
+        else{
+          $("#Input_AddressData_AddressCountryCode").selectOptionByIndex(1);
+        }
+        
         $("#Input_AddressData_AddressState").selectOptionByIndex(1);
         $("#Input_AddressData_AddressCity").val(Random.getText(6));
         $("#Input_AddressData_AddressZip").val("2" + Random.getNumbers(4));
@@ -72,7 +80,7 @@ $(function () {
         }
         
         if(LabelIs(IT) || LabelIs(GD)){
-            $("#Input_BirthData_FiscalCodeConfirmed").checkWhen("#Input_BirthData_FiscalCode:text");
+             $("#Input_BirthData_FiscalCodeConfirmed").checkWhenEntered("#Input_BirthData_FiscalCode");
         }
     }
 

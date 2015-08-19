@@ -1,26 +1,58 @@
 ﻿$(function () {
-    function selectOptionCallback(options) {
-        var item = $(options.self).find(options.pattern);
+    function selectOptionByIndexCallback(options) {
+        selectOption(options.self, "option:eq('" + options.params.value + "')");
+    }
 
-        if (item.length) {
-            $(options.self).find("option:selected").removeAttr("selected");
+    function selectOptionByValueCallback(options) {
+        selectOption(options.self, 'option[value="' + options.params.value + '"]');
+    }
+
+    function selectOption(self, pattern) {
+        var item = $(self).find(pattern);
+
+        if (item) {
+            $(self).find("option:selected").removeAttr("selected");
             item.prop("selected", true).click();
         }
     }
 
+    function FiscalCodeConfirmedCallback(options) {
+        if ($(options.self).val() == "") {
+            return;
+        }
+
+        $(options.params.selector).check();
+    }
+
     function Listener() {
-        var lastHtml;
+        var lastHash;
 
         this.listen = function (callback, options) {
             if (!$.isFunction(callback)) {
                 return;
             }
 
+            if (!options) {
+                options = {};
+            }
+
+            if (!options.property) {
+                options.property = "html";
+            }
+
             setInterval(function () {
-                var html = $(options.self).html();
-                if (lastHtml != html) {
+                var hash;
+                switch (options.property) {
+                    case "html":
+                        hash = md5($(options.self).html());
+                        break;
+                    case "val":
+                        hash = md5($(options.self).val());
+                        break;
+                }
+                if (lastHash != hash) {
                     callback(options);
-                    lastHtml = html;
+                    lastHash = hash;
                 }
 
             }, 500)
@@ -28,18 +60,14 @@
     }
 
     $.fn.selectOptionByIndex = function (index) {
-        index = index != null ? index : 0;
-
         return this.each(function () {
-            new Listener().listen(selectOptionCallback, { self: this, pattern: "option:eq('" + index + "')" })
+            new Listener().listen(selectOptionByIndexCallback, { self: this, params: { value: index } })
         });
     }
 
     $.fn.selectOptionByValue = function (value) {
-        value = value != null ? value : "";
-
         return this.each(function () {
-            new Listener().listen(selectOptionCallback, { self: this, pattern: 'option[value="' + value + '"]' })
+            new Listener().listen(selectOptionByValueCallback, { self: this, params: { value: value } })
         });
     }
 
@@ -66,30 +94,9 @@
         });
     }
 
-    $.fn.checkWhen = function (selector) {
+    $.fn.checkWhenEntered = function (selector) {
         return this.each(function () {
-            var self = this;
-            var interval = setInterval(function () {
-                if ($(selector).length) {
-                    $(self).check();
-                    clearInterval(interval);
-                }
-            }, 1000);
-        });
-    }
-
-    $.fn.change = function () {
-        return this.each(function () {
-            var id = $(this).attr("id");
-
-            if (id == undefined) {
-                return;
-            }
-
-            var select = document.getElementById(id);
-            var event = document.createEvent("HTMLEvents");
-            event.initEvent("change", true, true);
-            select.dispatchEvent(event);
+            new Listener().listen(FiscalCodeConfirmedCallback, { self: $(selector), property: "val", params: { selector: this } })
         });
     }
 });

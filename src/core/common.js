@@ -13,7 +13,7 @@
 
         if (item) {
             $(self).find("option:selected").removeAttr("selected");
-            item.css("background-color", "black");
+            $(self).css("color", "black");
             item.prop("selected", true).click();
         }
         

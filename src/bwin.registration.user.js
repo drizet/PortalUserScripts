@@ -5,7 +5,7 @@
 // @include     *bwin.*/registration*
 // @include     *gamebookers.com*/registration*
 // @include     *giocodigitale.it*/registration*
-// @version     0.4.3
+// @version     0.4.4
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/common.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/random.js
@@ -78,8 +78,8 @@ $(function () {
         }
 
         if (LabelIs(FR) || LabelIs(IT) || LabelIs(GD)) {
-            $("#Input_BirthData_BirthState").selectOptionByIndex(2);
-            $("#Input_BirthData_BirthCity").selectOptionByIndex(1);
+            $("#Input_BirthData_BirthState").selectOptionByIndex(2, true);
+            $("#Input_BirthData_BirthCity").selectOptionByIndex(1, true);
         }
         
         if(LabelIs(IT) || LabelIs(GD)){

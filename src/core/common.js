@@ -1,18 +1,28 @@
 ﻿$(function () {
-    function selectOptionByIndexCallback(options) {
-        selectOption(options.self, "option:eq('" + options.params.value + "')");
+     function selectOptionByIndexCallback(options) {
+        selectOption(options, "option:eq('" + options.params.value + "')");
     }
 
     function selectOptionByValueCallback(options) {
-        selectOption(options.self, 'option[value="' + options.params.value + '"]');
+        selectOption(options, 'option[value="' + options.params.value + '"]');
     }
 
-    function selectOption(self, pattern) {
+    function selectOption(options, pattern) {
+        var self = options.self;
         var item = $(self).find(pattern);
 
         if (item) {
             $(self).find("option:selected").removeAttr("selected");
+            item.css("background-color", "black");
             item.prop("selected", true).click();
+        }
+        
+        if(options.params.onChange)
+        {
+            var select = document.getElementById(self.id);
+            var event = document.createEvent("HTMLEvents");
+            event.initEvent("change", true, true);
+            select.dispatchEvent(event);
         }
     }
 
@@ -59,15 +69,15 @@
         }
     }
 
-    $.fn.selectOptionByIndex = function (index) {
+    $.fn.selectOptionByIndex = function (index, callOnChange) {
         return this.each(function () {
-            new Listener().listen(selectOptionByIndexCallback, { self: this, params: { value: index } })
+            new Listener().listen(selectOptionByIndexCallback, { self: this, params: { value: index, onChange: callOnChange } })
         });
     }
 
-    $.fn.selectOptionByValue = function (value) {
+    $.fn.selectOptionByValue = function (value, callOnChange) {
         return this.each(function () {
-            new Listener().listen(selectOptionByValueCallback, { self: this, params: { value: value } })
+            new Listener().listen(selectOptionByValueCallback, { self: this, params: { value: value, onChange: callOnChange } })
         });
     }
 

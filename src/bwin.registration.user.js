@@ -2,10 +2,10 @@
 // @name        Bwin registration
 // @namespace   Bwin registration
 // @description Prefill registration form on for all bwin labels
-// @include     *bwin.*/registration*
-// @include     *gamebookers.com*/registration*
-// @include     *giocodigitale.it*/registration*
-// @version     0.4.4
+// @include     *bwin.*/*/registration*
+// @include     *gamebookers.com*/*/registration*
+// @include     *giocodigitale.it*/*/registration*
+// @version     0.4.5
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/common.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/random.js

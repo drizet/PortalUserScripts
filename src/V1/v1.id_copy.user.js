@@ -4,7 +4,7 @@
 // @namespace   v1_id_copy
 // @description copy v1 id with link
 // @include     *v1.bwinparty.corp*
-// @version     0.5.2
+// @version     0.6.0
 // @grant       GM_setClipboard
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @require     https://raw.githubusercontent.com/kapetan/jquery-observe/master/jquery-observe.js
@@ -21,12 +21,21 @@ $(document).ready(function() {
     function addHandlers() {
         var $body = $("body");
 
-        $body.delegate("#copyviplink", "click", function() {
+        $body.delegate("#copyviplink", "click", function () {
             var itemId = $(".toolbar h4").text().replace('Backlog Item ', '').replace('Defect ', '').replace('Impediment ', '').replace('Request ', '').replace('Task ', '').trim();
+
+            // Make icon of V1 item;
+            var cssBackgroundImage = $(".toolbar .icon").css("background-image");
+            var image = "";
+            if (cssBackgroundImage) {
+                var itemIconUrl = cssBackgroundImage.replace('url(', '').replace(')', '');
+                image = "<img src='" + itemIconUrl + "'></img>";
+            }
+
             var itemTitle = $(".asset-heading h3").text().trim();
             var itemUrl = $(".copylink").val();
             var itemStyle = "font: 11pt Calibri;";
-            var result = "<a href='" + itemUrl + "' style='" + itemStyle + "'>" + itemId + ": " + itemTitle + "</a>";
+            var result = image + "<a href='" + itemUrl + "' style='" + itemStyle + "'>" + itemId + ": " + itemTitle + "</a>";
             GM_setClipboard(result, "html");
             $("#copyviplink").attr("src", "http://icons.iconarchive.com/icons/icojam/blue-bits/256/symbol-check-icon.png");
         });
@@ -38,6 +47,7 @@ $(document).ready(function() {
 
     addHandlers();
 
+    // For standalone page
     if ($(".copylink").val() != null) {
         createButton();
     }

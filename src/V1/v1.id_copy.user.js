@@ -4,7 +4,7 @@
 // @namespace   v1_id_copy
 // @description copy v1 id with link
 // @include     *v1.bwinparty.corp*
-// @version     0.6.5
+// @version     0.6.6
 // @grant       GM_setClipboard
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @require     https://raw.githubusercontent.com/kapetan/jquery-observe/master/jquery-observe.js

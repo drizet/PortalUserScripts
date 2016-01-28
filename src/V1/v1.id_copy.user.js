@@ -31,6 +31,7 @@ $(document).ready(function () {
             var image = "";
             if (cssBackgroundImage) {
                 var itemIconUrl = cssBackgroundImage.replace('url(', '').replace(')', '');
+                itemIconUrl = itemIconUrl.replace(/"/g, '');
                 image = "<img src='" + itemIconUrl + "'></img>";
             }
 

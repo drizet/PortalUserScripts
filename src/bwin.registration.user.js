@@ -11,7 +11,7 @@
 // @include     *bwin.gr/*/registration*
 // @include     *gamebookers.com/*/registration*
 // @include     *giocodigitale.it/*/registration*
-// @version     0.4.6
+// @version     0.4.7
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/common.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/random.js
@@ -58,6 +58,12 @@ $(function () {
         }
         else if(LabelIs(BAW)){
             $("#Input_AddressData_AddressCountryCode").selectOptionByValue("GB");
+        }
+        else if(LabelIs(IT)){
+            $("#Input_AddressData_AddressCountryCode").selectOptionByValue("IT");
+        }
+        else if(LabelIs(GD)){
+            $("#Input_AddressData_AddressCountryCode").selectOptionByValue("IT");
         }
         else{
           $("#Input_AddressData_AddressCountryCode").selectOptionByIndex(1);

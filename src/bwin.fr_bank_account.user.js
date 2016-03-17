@@ -1,19 +1,21 @@
 // ==UserScript==
-// @name        bwin.fr bank account
-// @namespace   bwin.fr
-// @description prefill bank account
-// @include     *www.bwin.fr/*/account/bankaccountregistration/index*
-// @version     2.1.3
-// @grant       none
-// @require     http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
-// @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/common.js
+// @name        Bank Account Registration
+// @namespace   Bank Account Registration
+// @description Prefill Bank Account Registration data
+// @include     *bwin.fr/*/account/bankaccountregistration/index*
+// @version     2.1.4
+// @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // ==/UserScript==
 
-$(function () {
-    $("#Input_DepositLimit").val(1250);
-    $("#Input_BettingStakes, #Input_PokerStakes").val(100000);
-    $("#Input_FromAccountBalance").val(10000);
-    $("#Input_RemainingBalance").val(5000);
-    $("#Input_Iban").val("FR1420041010050500013M02606");
+$(document).ready(function(){
+	if($("#bankAccountDataFrom").length){
+    $("#Input_Iban").val("FR14 2004 1010 0505 0001 3M02 606");
+    
     $("#Input_BicSwift").val("SOGEFRPP");
+    
+    $(".comboBox div input").each(function(){
+			var firstValue = $(this).next().next().children().first().text();
+      $(this).val(firstValue);
+		})
+	}
 });

@@ -5,6 +5,8 @@
 // @version     0.1
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @grant       none
+// ==/UserScript==
+
 $(function () {
 	$("select[_v1_updater='PrimaryWorkitem.Team'] option[value!='Team:3153474'][value!='Team:4363681']").remove()
 });

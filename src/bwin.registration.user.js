@@ -2,17 +2,12 @@
 // @name        Bwin registration
 // @namespace   Bwin registration
 // @description Prefill registration form on for all bwin labels
-// @include     *bwin.com/*/registration*
-// @include     *bwin.be/*/registration*
-// @include     *bwin.es/*/registration*
-// @include     *sh.bwin.de/*/registration*
-// @include     *bwin.fr/*/registration*
-// @include     *bwin.it/*/registration*
-// @include     *bwin.gr/*/registration*
+// @include     *bwin*/*/registration*
 // @include     *gamebookers.com/*/registration*
 // @include     *giocodigitale.it/*/registration*
 // @include     *partycasino.com/*/registration*
-// @version     0.4.8
+// @include     *sportingbet.com/*/registration*
+// @version     0.4.9
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/common.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/random.js

@@ -7,7 +7,7 @@
 // @include     *giocodigitale.it/*/registration*
 // @include     *partycasino.com/*/registration*
 // @include     *sportingbet*/*/registration*
-// @version     0.5.0
+// @version     0.5.1
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/common.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/random.js
@@ -25,7 +25,8 @@ $(function () {
     var GD = "giocodigitale.it";
     var GB = "gamebookers.com";
     var GR = "bwin.gr";
-
+	var SPB = "sportingbet"; // includes ro/com and other
+	
     if ($("#registration-form").length) {
         SetupPersonalData();
         SetupAccountData();
@@ -64,7 +65,11 @@ $(function () {
         else{
           $("#Input_AddressData_AddressCountryCode").selectOptionByIndex(1);
         }
-        
+           
+        if(LabelIs(SPB)){
+            $("#Input_IdentificationData_DocumentNumber").val("1920101"+ Random.getNumbers(6));
+        }
+		
         $("#Input_AddressData_AddressState").selectOptionByIndex(1);
         $("#Input_AddressData_AddressCity").val(Random.getText(6));
         $("#Input_AddressData_AddressZip").val("2" + Random.getNumbers(4));

@@ -7,7 +7,7 @@
 // @include     *giocodigitale.it/*/registration*
 // @include     *partycasino.com/*/registration*
 // @include     *sportingbet*/*/registration*
-// @version     0.5.1
+// @version     0.5.2
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/common.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/random.js
@@ -44,6 +44,9 @@ $(function () {
         }
         
         SetupConfirmationData();
+     
+        // Allow submit disabled fields. Replace 'disabled' attr to 'points-events'
+        $("input:disabled, select:disabled").removeAttr('disabled').css("pointer-events", "none").css("opacity", "0.4");
     }
 
     function SetupPersonalData() {

@@ -122,6 +122,11 @@ $(function () {
     function SetupConfirmationData() {
         $("#Input_TermsAndConditions_TacAcceptance, #Input_BonusData_BonusTacAccepted, #Input_PrivacyPolicy_PrivacyPolicyAccepted").check();
         
+		if(LabelIs(GR))
+        {
+            $("#Input_FundProtection_FundProtectionAcceptance").check();
+        }
+		
         if(LabelIs(IT) || LabelIs(GD)){
             $("#Input_NewslettersSubscription_NewslettersSubscriptionAccepted, #Input_OtherNoticeSubscription_OtherNoticeSubscriptionsAccepted").check()
         }

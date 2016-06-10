@@ -7,7 +7,7 @@
 // @include     *giocodigitale.it/*/registration*
 // @include     *partycasino.com/*/registration*
 // @include     *sportingbet*/*/registration*
-// @version     0.5.2
+// @version     0.5.3
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/common.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/random.js

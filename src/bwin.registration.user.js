@@ -7,7 +7,7 @@
 // @include     *giocodigitale.it/*/registration*
 // @include     *partycasino.com/*/registration*
 // @include     *sportingbet*/*/registration*
-// @version     0.5.3
+// @version     0.5.4
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/common.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/random.js
@@ -75,7 +75,14 @@ $(function () {
 		
         $("#Input_AddressData_AddressState").selectOptionByIndex(1);
         $("#Input_AddressData_AddressCity").val(Random.getText(6));
-        $("#Input_AddressData_AddressZip").val("2" + Random.getNumbers(4));
+		
+        var zipLengthWithoutPrefix = 4;
+        
+        if(LabelIs(SPB)){
+           zipLengthWithoutPrefix = 5;
+        }
+        
+        $("#Input_AddressData_AddressZip").val("2" + Random.getNumbers(zipLengthWithoutPrefix));		
         $("#Input_AddressData_AddressLine1").val("address");
         $("#Input_AddressData_AddressLine2").val("address2");
         $("#Input_CurrencyData_CurrencyCode").selectOptionByValue("EUR");

@@ -7,7 +7,7 @@
 // @include     *giocodigitale.it/*/registration*
 // @include     *partycasino.com/*/registration*
 // @include     *sportingbet*/*/registration*
-// @version     0.5.4
+// @version     0.5.5
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/common.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/random.js
@@ -53,6 +53,21 @@ $(function () {
         $("#Input_NameData_FirstName").val(Random.getText(10));
         $("#Input_NameData_LastName").val(Random.getText(10));
         
+        if(LabelIs(BAW)){
+            var rand = Random.getRandomCharacter("01");
+
+            if(rand == "0"){
+                $("input[id$='_TypeOfIdentity'][value='PIN']").click();
+                $("#Input_IdentificationData_PIN").val(Random.getNumbers(10));
+            }
+            else{
+                $("input[id$='_TypeOfIdentity'][value='PFN']").click();
+                $("#Input_IdentificationData_PFN").val(Random.getNumbers(10));
+            }
+            
+            $("#Input_NameData_MiddleName").val(Random.getText(10));
+        }		
+		
         if(LabelIs(ES)){
             $("#Input_AddressData_AddressCountryCode").selectOptionByValue("ES");
         }

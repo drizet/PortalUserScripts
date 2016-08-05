@@ -9,11 +9,12 @@
 // @include     *sportingbet*/*/registration*
 // @include     *totesport*/*/registration*
 // @include     *betfred*/*/registration*
-// @version     1.0.0
+// @version     1.0.1
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/common.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/random.js
 // @require     https://raw.githubusercontent.com/blueimp/JavaScript-MD5/master/js/md5.min.js
+// @grant       none
 // ==/UserScript==
 
 $(function () {    

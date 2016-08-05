@@ -9,7 +9,7 @@
 // @include     *sportingbet*/*/registration*
 // @include     *totesport*/*/registration*
 // @include     *betfred*/*/registration*
-// @version     0.5.7
+// @version     1.0.0
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/common.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/random.js
@@ -49,6 +49,11 @@ $(function () {
      
         // Allow submit disabled fields. Replace 'disabled' attr to 'points-events'
         $("input:disabled, select:disabled").removeAttr('disabled').css("pointer-events", "none").css("opacity", "0.4");
+        
+        // Fix for remote validation
+        setTimeout(function(){
+          $("input[data-val-remote-url]").focus().blur(); 
+        },500);
     }
 
     function SetupPersonalData() {
@@ -85,7 +90,7 @@ $(function () {
         else{
           $("#Input_AddressData_AddressCountryCode").selectOptionByIndex(1);
         }
-           
+
         if(LabelIs(SPB)){
             $("#Input_IdentificationData_DocumentNumber").val("1920101"+ Random.getNumbers(6));
         }
@@ -107,7 +112,7 @@ $(function () {
             
            zipCode = "2" + Random.getNumbers(zipLengthWithoutPrefix);
         }
-        
+
         $("#Input_AddressData_AddressZip").val(zipCode);		
         $("#Input_AddressData_AddressLine1").val("address");
         $("#Input_AddressData_AddressLine2").val("address2");

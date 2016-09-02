@@ -9,7 +9,7 @@
 // @include     *sportingbet*/*/registration*
 // @include     *totesport*/*/registration*
 // @include     *betfred*/*/registration*
-// @version     1.0.2
+// @version     1.0.3
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/common.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/random.js
@@ -119,7 +119,16 @@ $(function () {
         $("#Input_AddressData_AddressLine1").val("address");
         $("#Input_AddressData_AddressLine2").val("address2");
         $("#Input_CurrencyData_CurrencyCode").selectOptionByValue("EUR");
-        $("#Input_BirthData_DateOfBirth").setDate(1, 1, 1992);
+        
+        if(LabelIs(DK)){
+            $("#Input_BirthData_DateOfBirth_Day").selectOptionByIndex(1, true);
+            $("#Input_BirthData_DateOfBirth_Month").selectOptionByIndex(1, true);
+            $("#Input_BirthData_DateOfBirth_Year").val("1992");
+        }
+        else{
+            $("#Input_BirthData_DateOfBirth").setDate(1, 1, 1992);
+        }
+        
         $("#Input_ContactData_EmailAddress").val(Random.getEmail(8, "yopmail.com"));
         $("#Input_ContactData_MobileCountryCode").selectOptionByValue("380")
         $("#Input_ContactData_MobileNumber").val(Random.getNumbers(7));
@@ -143,7 +152,6 @@ $(function () {
         }
         
         if(LabelIs(DK)){
-            $("#Input_IdentificationData_CPRDate").val("010192")
             $("#Input_IdentificationData_CPRCode").val(Random.getNumbers(4));
         }
     }

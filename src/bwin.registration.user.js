@@ -9,7 +9,7 @@
 // @include     *sportingbet*/*/registration*
 // @include     *totesport*/*/registration*
 // @include     *betfred*/*/registration*
-// @version     1.0.1
+// @version     1.0.2
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/common.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/random.js
@@ -29,6 +29,7 @@ $(function () {
     var GB = "gamebookers.com";
     var GR = "bwin.gr";
 	var SPB = "sportingbet"; // includes ro/com and other
+    var DK = "bwin.dk";
 	
     if ($("#registration-form").length) {
         SetupPersonalData();
@@ -140,6 +141,11 @@ $(function () {
         if(LabelIs(IT) || LabelIs(GD)){
              $("#Input_BirthData_FiscalCodeConfirmed").checkWhenEntered("#Input_BirthData_FiscalCode");
         }
+        
+        if(LabelIs(DK)){
+            $("#Input_IdentificationData_CPRDate").val("010192")
+            $("#Input_IdentificationData_CPRCode").val(Random.getNumbers(4));
+        }
     }
 
     function SetupAccountData() {
@@ -152,6 +158,10 @@ $(function () {
         $("#Input_LoginData_Username").val(Random.getUserName(4));
 
         $("#Input_SecurityData_SecurityQuestion").selectOptionByIndex(1);
+        
+        if(LabelIs(DK)){
+            $("#Input_AccountData_ExpectingPlayerBehaviour").selectOptionByIndex(1);
+        }
     }
 
     function SetPassword(password) {

@@ -9,7 +9,7 @@
 // @include     *sportingbet*/*/registration*
 // @include     *totesport*/*/registration*
 // @include     *betfred*/*/registration*
-// @version     1.0.3
+// @version     1.0.4
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/common.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/random.js
@@ -121,9 +121,9 @@ $(function () {
         $("#Input_CurrencyData_CurrencyCode").selectOptionByValue("EUR");
         
         if(LabelIs(DK)){
-            $("#Input_BirthData_DateOfBirth_Day").selectOptionByIndex(1, true);
-            $("#Input_BirthData_DateOfBirth_Month").selectOptionByIndex(1, true);
-            $("#Input_BirthData_DateOfBirth_Year").val("1992");
+            $("#Input_BirthData_DateOfBirth_Day").selectOptionByIndex(11, true);
+            $("#Input_BirthData_DateOfBirth_Month").selectOptionByIndex(10, true);
+            $("#Input_BirthData_DateOfBirth_Year").val("1964");
         }
         else{
             $("#Input_BirthData_DateOfBirth").setDate(1, 1, 1992);
@@ -152,7 +152,7 @@ $(function () {
         }
         
         if(LabelIs(DK)){
-            $("#Input_IdentificationData_CPRCode").val(Random.getNumbers(4));
+            $("#Input_IdentificationData_CPRCode").val("9017");
         }
     }
 

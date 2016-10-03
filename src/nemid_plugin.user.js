@@ -1,11 +1,13 @@
 // ==UserScript==
 // @name        NemIdPlugin
 // @include     *bwin.dk*
-// @version     1.0.0
+// @version     1.0.1
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @grant       none
 // ==/UserScript==
 
+var nemid = "862611342";
+var password = "asasas12";
 var codeMapping = {
 "2":"772864",
 "66":"644310",
@@ -155,20 +157,41 @@ var codeMapping = {
 "9888":"983837",
 "9904":"405205",
 "9964":"579622"
-}
+};
 
-$(".nemid-container .preheader").append("<div style='text-align:center'><input type='text' readonly='readonly' value='862611342/asasas12' style='display:block; margin:0 auto;opacity:1'></input><input id='nemdid-otp-code' type='text' placeholder='nemid otp code'></input><input id='nemid-code' type='text' placeholder='nemid code' readonly='readonly'></input></div>");
-
-$("#nemdid-otp-code").on("focus", function(){
-  $(this).val("");
+var containerDiv = $("<div/>", {
+  style: "text-align:center"
 });
 
-$("#nemdid-otp-code").on("paste click", function(){
-  setTimeout(function(){
-  var val = $("#nemdid-otp-code").val();
-  
-  var code = codeMapping[val];
+var credentialsInput = $("<input/>", {
+  type: "text",
+  readonly: "readonly",
+  style: "display:block; margin:5px auto 0; opacity:1",
+  value: "1"//nemid + "/" + password
+});
 
-  $("#nemid-code").val(code);
-  },100)
-})
+var otpCodeInput = $("<input/>", {
+  id: "otp-code",
+  type: "text",
+  placeholder: "otp code"
+});
+
+var nemidCodeInput =  $("<input/>", {
+  id: "nemid-code",
+  type: "text",
+  placeholder: "nemid code",
+  readonly:"readonly",
+  style: "opacity:1"
+});
+
+containerDiv.append(credentialsInput);
+containerDiv.append(otpCodeInput);
+containerDiv.append(nemidCodeInput);
+
+$(".nemid-container .preheader").append(containerDiv);
+
+$("#otp-code").on("keyup", function(){
+   var val = $("#otp-code").val();
+   var code = codeMapping[val];
+   $("#nemid-code").val(code);
+});

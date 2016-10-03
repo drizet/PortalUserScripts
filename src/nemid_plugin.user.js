@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        NemIdPlugin
 // @include     *bwin.dk*
-// @version     1.0.1
+// @version     1.0.2
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @grant       none
 // ==/UserScript==
@@ -167,13 +167,21 @@ var credentialsInput = $("<input/>", {
   type: "text",
   readonly: "readonly",
   style: "display:block; margin:5px auto 0; opacity:1",
-  value: "1"//nemid + "/" + password
+  value: nemid + "/" + password
 });
 
 var otpCodeInput = $("<input/>", {
   id: "otp-code",
   type: "text",
-  placeholder: "otp code"
+  placeholder: "otp code",
+  focus: function(){
+    $(this).val("");
+  },
+  keyup: function(){
+      var val = $("#otp-code").val();
+      var code = codeMapping[val];
+      $("#nemid-code").val(code);
+   }
 });
 
 var nemidCodeInput =  $("<input/>", {
@@ -189,9 +197,3 @@ containerDiv.append(otpCodeInput);
 containerDiv.append(nemidCodeInput);
 
 $(".nemid-container .preheader").append(containerDiv);
-
-$("#otp-code").on("keyup", function(){
-   var val = $("#otp-code").val();
-   var code = codeMapping[val];
-   $("#nemid-code").val(code);
-});

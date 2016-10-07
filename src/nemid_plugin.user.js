@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        NemIdPlugin
 // @include     *bwin.dk*
-// @version     1.0.3
+// @version     1.0.4
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @grant       none
 // ==/UserScript==

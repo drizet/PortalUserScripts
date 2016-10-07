@@ -6,7 +6,7 @@
 // @grant       none
 // ==/UserScript==
 
-var nemid = "133478666";
+var nemid = "606978237";
 var password = "asasas12";
 
 var containerDiv = $("<div/>", {

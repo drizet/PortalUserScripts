@@ -62,6 +62,7 @@ function getNemIdCode(key) {
 		type : "GET",
 		url : "https://cors-anywhere.herokuapp.com/https://appletk.danid.dk/developers/OtpCard?userid=" + nemid,
 		dataType : "html",
+		async: false,
 		success : function (data) {
 			var matches = data.match(/\<td align=\"center\"\>(\d{4}?)\<\/td\>\<td align=\"center\"\>(\d{6}?)\<\/td\>/g);
 

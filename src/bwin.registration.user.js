@@ -9,7 +9,7 @@
 // @include     *sportingbet*/*/registration*
 // @include     *totesport*/*/registration*
 // @include     *betfred*/*/registration*
-// @version     1.0.5
+// @version     1.0.6
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/common.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/random.js
@@ -101,17 +101,20 @@ $(function () {
 		
         var zipCode;
         
-        if(LabelIs(SHDE)){
+        if(LabelIs(ES)){
+            zipCode = "01385";
+        }
+        else if(LabelIs(SHDE)){
             zipCode = "25355";
         }
         else{
-           var zipLengthWithoutPrefix = 4;
+           var randomLength = 4;
         
            if(LabelIs(SPB)){
-              zipLengthWithoutPrefix = 5;
+              randomLength = 5;
            }
             
-           zipCode = "2" + Random.getNumbers(zipLengthWithoutPrefix);
+           zipCode = "2" + Random.getNumbers(randomLength);
         }
 
         $("#Input_AddressData_AddressZip").val(zipCode);		

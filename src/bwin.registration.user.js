@@ -76,21 +76,20 @@ $(function () {
             
             $("#Input_NameData_MiddleName").val(Random.getText(10));
         }		
-		
+
         if(LabelIs(ES)){
             $("#Input_AddressData_AddressCountryCode").selectOptionByValue("ES");
         }
         else if(LabelIs(BAW)){
             $("#Input_AddressData_AddressCountryCode").selectOptionByValue("GB");
         }
-        else if(LabelIs(IT)){
-            $("#Input_AddressData_AddressCountryCode").selectOptionByValue("IT");
-        }
-        else if(LabelIs(GD)){
+        else if(LabelIs(IT) || LabelIs(GD)){
             $("#Input_AddressData_AddressCountryCode").selectOptionByValue("IT");
         }
         else{
-          $("#Input_AddressData_AddressCountryCode").selectOptionByIndex(1);
+            if($("#Input_AddressData_AddressCountryCode option").length > 1){
+                $("#Input_AddressData_AddressCountryCode").selectOptionByIndex(1);
+            }
         }
 
         if(LabelIs(SPB)){

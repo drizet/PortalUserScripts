@@ -9,7 +9,7 @@
 // @include     *sportingbet*/*/registration*
 // @include     *totesport*/*/registration*
 // @include     *betfred*/*/registration*
-// @version     1.0.6
+// @version     1.0.7
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/common.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/random.js
@@ -17,7 +17,7 @@
 // @grant       none
 // ==/UserScript==
 
-$(function () {    
+$(function () {
     // Portal labels
     var BAW = "bwin.com";
     var BE = "bwin.be";
@@ -28,9 +28,9 @@ $(function () {
     var GD = "giocodigitale.it";
     var GB = "gamebookers.com";
     var GR = "bwin.gr";
-	var SPB = "sportingbet"; // includes ro/com and other
+    var SPB = "sportingbet"; // includes ro/com and other
     var DK = "bwin.dk";
-	
+
     if ($("#registration-form").length) {
         SetupPersonalData();
         SetupAccountData();
@@ -42,26 +42,26 @@ $(function () {
         if (LabelIs(ES)) {
             SetupNieNifData();
         }
-        
+
         if(LabelIs(IT) || LabelIs(GD)){
             SetupDocumentData();
         }
-        
+
         SetupConfirmationData();
-     
+
         // Allow submit disabled fields. Replace 'disabled' attr to 'points-events'
         $("input:disabled, select:disabled").removeAttr('disabled').css("pointer-events", "none").css("opacity", "0.4");
-        
+
         // Fix for remote validation
         setTimeout(function(){
-          $("input[data-val-remote-url]").focus().blur(); 
+            $("input[data-val-remote-url]").focus().blur();
         },500);
     }
 
     function SetupPersonalData() {
         $("#Input_NameData_FirstName").val(Random.getText(10));
         $("#Input_NameData_LastName").val(Random.getText(10));
-        
+
         if(LabelIs(BAW)){
             var rand = Random.getRandomCharacter("01");
 
@@ -73,34 +73,28 @@ $(function () {
                 $("input[id$='_TypeOfIdentity'][value='PFN']").click();
                 $("#Input_IdentificationData_PFN").val(Random.getNumbers(10));
             }
-            
-            $("#Input_NameData_MiddleName").val(Random.getText(10));
-        }		
 
-        if(LabelIs(ES)){
-            $("#Input_AddressData_AddressCountryCode").selectOptionByValue("ES");
+            $("#Input_NameData_MiddleName").val(Random.getText(10));
         }
-        else if(LabelIs(BAW)){
-            $("#Input_AddressData_AddressCountryCode").selectOptionByValue("GB");
-        }
-        else if(LabelIs(IT) || LabelIs(GD)){
-            $("#Input_AddressData_AddressCountryCode").selectOptionByValue("IT");
-        }
-        else{
-            if($("#Input_AddressData_AddressCountryCode option").length > 1){
-                $("#Input_AddressData_AddressCountryCode").selectOptionByIndex(1);
+
+        if($("#Input_AddressData_AddressCountryCode option").length > 1){
+            if(LabelIs(ES)){
+                $("#Input_AddressData_AddressCountryCode").selectOptionByValue("ES");
+            }
+            else if(LabelIs(BAW)){
+                $("#Input_AddressData_AddressCountryCode").selectOptionByValue("GB");
+            }
+            else if(LabelIs(IT) || LabelIs(GD)){
+                $("#Input_AddressData_AddressCountryCode").selectOptionByValue("IT");
             }
         }
 
         if(LabelIs(SPB)){
             $("#Input_IdentificationData_DocumentNumber").val("1920101"+ Random.getNumbers(6));
         }
-		
         $("#Input_AddressData_AddressState").selectOptionByIndex(1);
         $("#Input_AddressData_AddressCity").val(Random.getText(6));
-		
         var zipCode;
-        
         if(LabelIs(ES)){
             zipCode = "01385";
         }
@@ -108,20 +102,17 @@ $(function () {
             zipCode = "25355";
         }
         else{
-           var randomLength = 4;
-        
-           if(LabelIs(SPB)){
-              randomLength = 5;
-           }
-            
-           zipCode = "2" + Random.getNumbers(randomLength);
+            var randomLength = 4;
+            if(LabelIs(SPB)){
+                randomLength = 5;
+            }
+            zipCode = "2" + Random.getNumbers(randomLength);
         }
 
-        $("#Input_AddressData_AddressZip").val(zipCode);		
+        $("#Input_AddressData_AddressZip").val(zipCode);
         $("#Input_AddressData_AddressLine1").val("address");
         $("#Input_AddressData_AddressLine2").val("address2");
         $("#Input_CurrencyData_CurrencyCode").selectOptionByValue("EUR");
-        
         if(LabelIs(DK)){
             $("#Input_BirthData_DateOfBirth_Day").selectOptionByIndex(11, true);
             $("#Input_BirthData_DateOfBirth_Month").selectOptionByIndex(10, true);
@@ -130,9 +121,8 @@ $(function () {
         else{
             $("#Input_BirthData_DateOfBirth").setDate(1, 1, 1992);
         }
-        
         $("#Input_ContactData_EmailAddress").val(Random.getEmail(8, "yopmail.com"));
-        $("#Input_ContactData_MobileCountryCode").selectOptionByValue("380")
+        $("#Input_ContactData_MobileCountryCode").selectOptionByValue("380");
         $("#Input_ContactData_MobileNumber").val(Random.getNumbers(7));
 
         if (LabelIs(ES)) {
@@ -148,11 +138,9 @@ $(function () {
             $("#Input_BirthData_BirthState").selectOptionByIndex(2, true);
             $("#Input_BirthData_BirthCity").selectOptionByIndex(1, true);
         }
-        
         if(LabelIs(IT) || LabelIs(GD)){
-             $("#Input_BirthData_FiscalCodeConfirmed").checkWhenEntered("#Input_BirthData_FiscalCode");
+            $("#Input_BirthData_FiscalCodeConfirmed").checkWhenEntered("#Input_BirthData_FiscalCode");
         }
-        
         if(LabelIs(DK)){
             $("#Input_IdentificationData_CPRCode").val("9017");
         }
@@ -160,15 +148,14 @@ $(function () {
 
     function SetupAccountData() {
         if (LabelIs(ES)) {
-            SetPassword("123123Qq")
+            SetPassword("123123Qq");
         }
         else {
-            SetPassword("123123qq")
+            SetPassword("123123qq");
         }
         $("#Input_LoginData_Username").val(Random.getUserName(4));
 
         $("#Input_SecurityData_SecurityQuestion").selectOptionByIndex(1);
-        
         if(LabelIs(DK)){
             $("#Input_AccountData_ExpectingPlayerBehaviour").selectOptionByIndex(1);
         }
@@ -180,14 +167,12 @@ $(function () {
 
     function SetupConfirmationData() {
         $("#Input_TermsAndConditions_TacAcceptance, #Input_BonusData_BonusTacAccepted, #Input_PrivacyPolicy_PrivacyPolicyAccepted").check();
-        
-		if(LabelIs(GR))
+        if(LabelIs(GR))
         {
             $("#Input_FundProtection_FundProtectionAcceptance").check();
         }
-		
         if(LabelIs(IT) || LabelIs(GD)){
-            $("#Input_NewslettersSubscription_NewslettersSubscriptionAccepted, #Input_OtherNoticeSubscription_OtherNoticeSubscriptionsAccepted").check()
+            $("#Input_NewslettersSubscription_NewslettersSubscriptionAccepted, #Input_OtherNoticeSubscription_OtherNoticeSubscriptionsAccepted").check();
         }
 
         $("#Captcha_Input_Answer").val("+++");
@@ -213,7 +198,6 @@ $(function () {
         dni = dni + characters[parseInt(dni) % 23];
         $("#Input_NieNif_IdDocumentNumber").val(dni);
     }
-    
     function SetupDocumentData(){
         $("#Input_IdentificationData_DocumentType").selectOptionByIndex(1);
         $("#Input_IdentificationData_DocumentNumber").val(Random.getText(6));

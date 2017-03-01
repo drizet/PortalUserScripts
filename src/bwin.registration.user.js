@@ -9,7 +9,7 @@
 // @include     *sportingbet*/*/registration*
 // @include     *totesport*/*/registration*
 // @include     *betfred*/*/registration*
-// @version     1.0.8
+// @version     1.0.9
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/common.js
 // @require     https://raw.githubusercontent.com/drizet/PortalUserScripts/master/src/core/random.js
@@ -103,16 +103,15 @@ $(function () {
         }
         else{
             var randomLength = 4;
-            // [sportingbet.com]
-            // if AddressCountryCode=HU
-            // then AddressZip=4
-            // else AddressZip=6
-            if(LabelIs(SPB) && $("#Input_AddressData_AddressCountryCode").val() == "HU"){
-                randomLength = 3;
-            }
-            else
-            {
-                randomLength = 5;
+            // HU => 4 ('2'+rnd), otherwise => 6 ('2'+rnd)
+            if(LabelIs(SPB)){
+                if($("#Input_AddressData_AddressCountryCode").val() == "HU")
+                {
+                    randomLength = 3;
+                }
+                else{
+                    randomLength = 5;
+                }
             }
             zipCode = "2" + Random.getNumbers(randomLength);
         }
